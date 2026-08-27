@@ -128,4 +128,13 @@ body {
     padding: 16px;
   }
 }
+.login-screen {
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+  background: #f3f6fb;
+}
 
+.login-card { width: 380px; }
+.login-card h2 { margin: 0 0 24px; text-align: center; }
+.login-button { width: 100%; margin-top: 12px; }

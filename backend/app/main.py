@@ -7,10 +7,12 @@ from fastapi.middleware.cors import CORSMiddleware
 from app.api.router import api_router
 from app.core.config import settings
 from app.core.database import dispose_engine
+from app.core.bootstrap import bootstrap_identity
 
 
 @asynccontextmanager
 async def lifespan(_: FastAPI) -> AsyncIterator[None]:
+    await bootstrap_identity()
     yield
     await dispose_engine()
 
@@ -32,4 +34,3 @@ app.add_middleware(
 )
 
 app.include_router(api_router, prefix="/api/v1")
-

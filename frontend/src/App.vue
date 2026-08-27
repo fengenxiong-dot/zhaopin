@@ -6,11 +6,39 @@ import {
   House,
   User,
 } from '@element-plus/icons-vue'
-import { computed } from 'vue'
+import { computed, onMounted, reactive, ref } from 'vue'
 import { useRoute } from 'vue-router'
 
 const route = useRoute()
 const title = computed(() => String(route.meta.title ?? '招聘信息管理系统'))
+const user = ref<{ display_name: string; roles: string[] } | null>(null)
+const loading = ref(true)
+const error = ref('')
+const form = reactive({ username: 'admin', password: '' })
+
+async function loadUser() {
+  const response = await fetch('/api/v1/auth/me', { credentials: 'include' })
+  if (response.ok) user.value = await response.json()
+  loading.value = false
+}
+
+async function login() {
+  error.value = ''
+  const response = await fetch('/api/v1/auth/login', {
+    method: 'POST', credentials: 'include', headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(form),
+  })
+  if (!response.ok) { error.value = '用户名或密码错误'; return }
+  user.value = await response.json()
+}
+
+async function logout() {
+  await fetch('/api/v1/auth/logout', { method: 'POST', credentials: 'include' })
+  user.value = null
+  form.password = ''
+}
+
+onMounted(() => loadUser().catch(() => { loading.value = false }))
 
 const menuItems = [
   { path: '/', label: '工作台', icon: House },
@@ -22,7 +50,19 @@ const menuItems = [
 </script>
 
 <template>
-  <el-container class="app-shell">
+  <div v-if="loading" class="login-screen">加载中...</div>
+  <div v-else-if="!user" class="login-screen">
+    <el-card class="login-card">
+      <h2>招聘信息管理系统</h2>
+      <el-form @submit.prevent="login">
+        <el-form-item><el-input v-model="form.username" placeholder="用户名" /></el-form-item>
+        <el-form-item><el-input v-model="form.password" type="password" show-password placeholder="密码" @keyup.enter="login" /></el-form-item>
+        <el-alert v-if="error" :title="error" type="error" :closable="false" />
+        <el-button type="primary" native-type="submit" class="login-button">登录</el-button>
+      </el-form>
+    </el-card>
+  </div>
+  <el-container v-else class="app-shell">
     <el-aside width="208px" class="app-sidebar">
       <div class="brand">招聘管理</div>
       <el-menu :default-active="route.path" router>
@@ -38,7 +78,8 @@ const menuItems = [
         <strong>{{ title }}</strong>
         <div class="current-user">
           <el-avatar :size="32">管</el-avatar>
-          <span>系统管理员</span>
+          <span>{{ user.display_name }}</span>
+          <el-button link @click="logout">退出</el-button>
         </div>
       </el-header>
       <el-main class="app-main">
@@ -47,4 +88,3 @@ const menuItems = [
     </el-container>
   </el-container>
 </template>
-

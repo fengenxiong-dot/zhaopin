@@ -20,6 +20,12 @@ class Settings(BaseSettings):
     database_url: str = "postgresql+asyncpg://recruitment:recruitment@localhost:5432/recruitment"
     attachment_root: str = "/app/storage/attachments"
     max_attachment_size_mb: int = Field(default=20, gt=0, le=200)
+    session_cookie_name: str = "recruitment_session"
+    session_ttl_hours: int = Field(default=12, gt=0, le=168)
+    cookie_secure: bool = False
+    bootstrap_admin_username: str = "admin"
+    bootstrap_admin_password: str = "ChangeMe123!"
+    bootstrap_admin_display_name: str = "系统管理员"
 
     @field_validator("app_env")
     @classmethod
