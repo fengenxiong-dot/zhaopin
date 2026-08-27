@@ -1,0 +1,1626 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="referrer" content="no-referrer">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'unsafe-inline' 'unsafe-eval' 'wasm-unsafe-eval' blob: data: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://esm.sh https://fonts.bunny.net https://fonts.googleapis.com https://fonts.gstatic.com https://unpkg.com; style-src 'unsafe-inline' blob: data: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://esm.sh https://fonts.bunny.net https://fonts.googleapis.com https://fonts.gstatic.com https://unpkg.com; img-src blob: data: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://esm.sh https://fonts.bunny.net https://fonts.googleapis.com https://fonts.gstatic.com https://unpkg.com; font-src blob: data: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://esm.sh https://fonts.bunny.net https://fonts.googleapis.com https://fonts.gstatic.com https://unpkg.com; media-src blob: data: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://esm.sh https://fonts.bunny.net https://fonts.googleapis.com https://fonts.gstatic.com https://unpkg.com; worker-src blob:; connect-src blob: data:; frame-src 'self'; object-src 'none'; base-uri 'none'; form-action 'none'">
+<title>Recruitment V1 Prototype</title>
+<style>:root{color-scheme:light dark;background:light-dark(rgb(255 255 255), rgb(24 24 24))}html,body{margin:0}body{box-sizing:border-box;padding:1rem;background:inherit}iframe{display:block;width:100%;height:calc(100vh - 2rem);margin:0 auto;border:0}</style>
+</head>
+<body>
+<iframe sandbox="allow-scripts" referrerpolicy="no-referrer" title="Recruitment V1 Prototype" srcdoc="&lt;!doctype html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+&lt;head&gt;
+&lt;meta charset=&quot;utf-8&quot;&gt;
+&lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1&quot;&gt;
+&lt;meta name=&quot;referrer&quot; content=&quot;no-referrer&quot;&gt;
+&lt;meta http-equiv=&quot;Content-Security-Policy&quot; content=&quot;default-src &#x27;none&#x27;; script-src &#x27;unsafe-inline&#x27; &#x27;unsafe-eval&#x27; &#x27;wasm-unsafe-eval&#x27; blob: data: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://esm.sh https://fonts.bunny.net https://fonts.googleapis.com https://fonts.gstatic.com https://unpkg.com; style-src &#x27;unsafe-inline&#x27; blob: data: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://esm.sh https://fonts.bunny.net https://fonts.googleapis.com https://fonts.gstatic.com https://unpkg.com; img-src blob: data: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://esm.sh https://fonts.bunny.net https://fonts.googleapis.com https://fonts.gstatic.com https://unpkg.com; font-src blob: data: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://esm.sh https://fonts.bunny.net https://fonts.googleapis.com https://fonts.gstatic.com https://unpkg.com; media-src blob: data: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://esm.sh https://fonts.bunny.net https://fonts.googleapis.com https://fonts.gstatic.com https://unpkg.com; worker-src blob:; connect-src blob: data:; frame-src &#x27;none&#x27;; object-src &#x27;none&#x27;; base-uri &#x27;none&#x27;; form-action &#x27;none&#x27;&quot;&gt;
+&lt;title&gt;Recruitment V1 Prototype&lt;/title&gt;
+&lt;style&gt;:root {
+  color-scheme: light dark;
+  background-color: var(
+    --background,
+    var(--color-background-primary, light-dark(rgb(255 255 255), rgb(24 24 24)))
+  ) !important;
+
+  /* Agent-facing contract; keep in sync with SKILL.md. */
+  --background: var(
+    --color-background-primary,
+    light-dark(rgb(255 255 255), rgb(24 24 24))
+  );
+  --foreground: var(
+    --color-text-primary,
+    light-dark(rgb(26 28 31), rgb(255 255 255))
+  );
+  --card: color-mix(in oklab, var(--foreground) 5%, var(--background));
+  --card-foreground: var(
+    --color-text-primary,
+    light-dark(rgb(26 28 31), rgb(255 255 255))
+  );
+  --popover: var(
+    --color-background-secondary,
+    light-dark(rgb(255 255 255), rgb(45 45 45))
+  );
+  --popover-foreground: var(
+    --color-text-primary,
+    light-dark(rgb(26 28 31), rgb(255 255 255))
+  );
+  --primary: var(
+    --color-text-info,
+    light-dark(rgb(51 156 255), rgb(131 195 255))
+  );
+  --primary-foreground: var(
+    --color-text-inverse,
+    light-dark(rgb(255 255 255), rgb(13 13 13))
+  );
+  --secondary: var(
+    --color-background-secondary,
+    light-dark(rgb(255 255 255 / 96%), rgb(54 54 54 / 96%))
+  );
+  --secondary-foreground: var(
+    --color-text-primary,
+    light-dark(rgb(26 28 31), rgb(255 255 255))
+  );
+  --muted: color-mix(in srgb, var(--foreground) 10%, transparent);
+  --muted-foreground: var(
+    --color-text-secondary,
+    light-dark(rgb(26 28 31 / 49.4%), rgb(255 255 255 / 49.8%))
+  );
+  --accent: var(
+    --color-background-info,
+    light-dark(rgb(229 242 255), rgb(13 39 63))
+  );
+  --accent-foreground: var(
+    --color-text-info,
+    light-dark(rgb(51 156 255), rgb(131 195 255))
+  );
+  --destructive: var(
+    --color-text-warning,
+    light-dark(rgb(226 85 7), rgb(255 133 73))
+  );
+  --border: var(
+    --color-border-secondary,
+    light-dark(rgb(26 28 31 / 8%), rgb(255 255 255 / 8.2%))
+  );
+  --input: var(
+    --color-border-primary,
+    light-dark(
+      rgb(26 28 31 / 11.8%),
+      color-mix(in oklab, rgb(0 0 0) 10%, transparent)
+    )
+  );
+  --ring: var(
+    --color-ring-primary,
+    light-dark(rgb(51 156 255), rgb(131 195 255 / 76%))
+  );
+  --font-size-base: var(--font-text-md-size, 14px);
+  --blue: light-dark(rgb(51 156 255), rgb(51 156 255));
+  --orange: light-dark(rgb(226 85 7), rgb(251 106 34));
+  --green: light-dark(rgb(0 162 64), rgb(64 201 119));
+  --red: light-dark(rgb(224 46 42), rgb(255 103 100));
+  --purple: light-dark(rgb(146 79 247), rgb(173 123 249));
+  --yellow: light-dark(rgb(255 195 0), rgb(255 210 64));
+  --viz-series-1: var(--primary);
+  --viz-series-2: light-dark(rgb(243 136 59), rgb(245 154 86));
+  --viz-series-3: light-dark(rgb(93 201 119), rgb(116 213 139));
+  --viz-series-4: light-dark(rgb(235 119 177), rgb(240 143 192));
+  --viz-series-5: light-dark(rgb(155 121 236), rgb(170 145 239));
+  --viz-series-6: light-dark(rgb(58 185 177), rgb(90 203 194));
+
+  /* Internal implementation variables; not part of the agent contract. */
+  --font-sans: -apple-system, system-ui, &quot;Segoe UI&quot;, sans-serif;
+  --font-mono:
+    ui-monospace, SFMono-Regular, &quot;SF Mono&quot;, Menlo, Consolas, &quot;Liberation Mono&quot;,
+    monospace;
+  --font-size-normal: max(11px, var(--font-size-base));
+  --font-size-tooltip: calc(var(--font-size-base) - 1px);
+  --font-size-small: max(11px, calc(var(--font-size-base) - 2px));
+  --font-size-h1: calc(var(--font-size-normal) * 1.7142857143);
+  --font-size-h2: calc(var(--font-size-normal) * 1.4285714286);
+  --font-size-h3: calc(var(--font-size-normal) * 1.2857142857);
+  --font-weight-normal: 430;
+  --font-weight-medium: 500;
+  --line-height-normal: calc(var(--font-size-normal) * 1.5);
+  --line-height-tooltip: calc(var(--font-size-tooltip) * 1.4285714286);
+  --line-height-small: calc(var(--font-size-small) + 4px);
+  --radius: var(--border-radius-lg, 12.5px);
+  --radius-sm: calc(var(--radius) * 0.6);
+  --radius-md: calc(var(--radius) * 0.8);
+  --radius-lg: var(--radius);
+  --radius-2xl: calc(var(--radius) * 1.6);
+  --radius-full: 9999px;
+  --shadow-sm: 0 1px 2px -1px rgb(0 0 0 / 8%);
+  --checkmark-image: url(&quot;data:image/svg+xml,%3Csvg xmlns=&#x27;http://www.w3.org/2000/svg&#x27; viewBox=&#x27;0 0 17 17&#x27;%3E%3Cpath d=&#x27;M12.8961 3.64101C13.1297 3.41418 13.4984 3.37523 13.7779 3.56581C14.0571 3.75635 14.1554 4.11331 14.0299 4.41347L13.9615 4.53847L7.71151 13.7045C7.59411 13.8767 7.4063 13.9877 7.19881 14.0072C6.99136 14.0267 6.78564 13.9533 6.63826 13.806L2.88826 10.056L2.79842 9.9457C2.6192 9.67407 2.64927 9.30496 2.88826 9.06581C3.12738 8.82669 3.49647 8.79676 3.76815 8.97597L3.8785 9.06581L7.03084 12.2182L12.8053 3.74941L12.8961 3.64101Z&#x27;/%3E%3C/svg%3E&quot;);
+
+  /* Legacy aliases; not part of the current agent contract. */
+  --viz-bg: transparent;
+  --viz-panel: var(--card);
+  --viz-border: var(--border);
+  --viz-text: var(--foreground);
+  --viz-muted: var(--muted-foreground);
+  --viz-accent: var(--primary);
+  --viz-accent-text: var(--primary-foreground);
+  --viz-accent-bg: var(--accent);
+  --viz-font-size: var(--font-size-base);
+  --viz-warning: var(--destructive);
+}
+
+:root[data-theme=&quot;light&quot;] {
+  color-scheme: light;
+}
+
+:root[data-theme=&quot;dark&quot;] {
+  color-scheme: dark;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html &gt; body {
+  /* Preserve MCP aliases for older inline renderers without creating :root cycles. */
+  --color-background-primary: var(
+    --background,
+    light-dark(rgb(255 255 255), rgb(24 24 24))
+  );
+  --color-text-primary: var(
+    --foreground,
+    light-dark(rgb(26 28 31), rgb(255 255 255))
+  );
+  --color-border-secondary: var(
+    --border,
+    light-dark(rgb(26 28 31 / 8%), rgb(255 255 255 / 8.2%))
+  );
+
+  margin: 0;
+  padding: 5px;
+  color: var(--foreground);
+  background: transparent !important;
+  font-family: var(--font-sans) !important;
+  font-size: var(--font-size-normal);
+  font-weight: var(--font-weight-normal);
+  line-height: var(--line-height-normal);
+}
+
+a {
+  color: color-mix(in srgb, var(--viz-accent) 80%, var(--viz-text) 20%);
+  cursor: pointer;
+  font-weight: var(--font-weight-medium, 500);
+  text-decoration: none;
+  text-underline-offset: 2px;
+}
+
+a:is(:hover, :focus-visible) {
+  text-decoration-line: underline;
+  text-decoration-style: dashed;
+  text-decoration-thickness: 0.5px;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+  margin-block: 0;
+}
+
+h1 {
+  font-size: var(--font-size-h1);
+  font-weight: var(--font-weight-medium);
+  line-height: 1.25;
+}
+
+h2 {
+  font-size: var(--font-size-h2);
+  font-weight: var(--font-weight-medium);
+  line-height: 1.25;
+}
+
+h3,
+h4,
+h5,
+h6 {
+  font-size: var(--font-size-h3);
+  font-weight: var(--font-weight-medium);
+  line-height: 1.3;
+}
+
+b,
+strong,
+th {
+  font-weight: var(--font-weight-medium);
+}
+
+code:not(pre code) {
+  display: inline;
+  padding: 1px 6px;
+  border-radius: var(--radius-sm);
+  corner-shape: superellipse(1.5);
+  background: var(--muted);
+  font-family: var(--font-mono);
+  font-size: 0.92em;
+  overflow-wrap: anywhere;
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
+  word-break: break-word;
+}
+
+.table-responsive {
+  width: 100%;
+  overflow-x: auto;
+  scrollbar-width: thin;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  color: var(--foreground);
+  font: inherit;
+  text-align: start;
+}
+
+.table :is(th, td) {
+  padding-block: 10px;
+  padding-inline: 0 24px;
+  overflow-wrap: anywhere;
+  border-bottom: 1px solid var(--border);
+  text-align: start;
+  vertical-align: top;
+}
+
+.table-responsive &gt; .table :is(th, td) {
+  overflow-wrap: break-word;
+}
+
+.table :is(th, td):last-child {
+  padding-inline-end: 0;
+}
+
+.table :is(caption, thead th) {
+  font-weight: 600;
+}
+
+.table thead th {
+  padding-block: 8px;
+  border-bottom-color: color-mix(in srgb, var(--foreground) 16%, transparent);
+}
+
+.table tbody tr:last-child :is(th, td) {
+  border-bottom: 0;
+}
+
+.table.table-sm :is(th, td) {
+  padding-block: 6px;
+}
+
+.table.table-sm :is(th, td):not(:last-child) {
+  padding-inline-end: 16px;
+}
+
+.table :is(.text-end, [align=&quot;right&quot;]) {
+  text-align: end;
+  font-variant-numeric: tabular-nums;
+}
+
+.table :is(.text-center, [align=&quot;center&quot;]) {
+  text-align: center;
+}
+
+.table .text-nowrap {
+  white-space: nowrap;
+}
+
+#widget {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  width: 100%;
+  padding: 0;
+  background: transparent !important;
+}
+
+.card {
+  min-width: 0;
+  padding: 12px;
+  overflow: hidden;
+  overflow-wrap: break-word;
+  border-radius: var(--radius-2xl);
+  corner-shape: superellipse(1.5);
+  color: var(--card-foreground);
+  background: var(--card);
+}
+
+#widget &gt; :not(.card, .progress) {
+  width: 100% !important;
+  max-width: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+}
+
+.tooltip {
+  position: fixed;
+  z-index: 50;
+  top: 0;
+  left: 0;
+  width: max-content;
+  max-width: min(
+    20rem,
+    var(--tooltip-available-width, calc(100vw - 10px)),
+    calc(100vw - 10px)
+  );
+  max-height: min(
+    var(--tooltip-available-height, calc(100vh - 10px)),
+    calc(100vh - 10px)
+  );
+  padding: 4px 8px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  corner-shape: superellipse(1.5);
+  color: var(--popover-foreground);
+  background: var(--popover);
+  box-shadow: none;
+  font-size: var(--font-size-tooltip);
+  line-height: var(--line-height-tooltip);
+  overflow-wrap: break-word;
+  white-space: normal;
+  pointer-events: none;
+  user-select: none;
+}
+
+.viz-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(max(180px, 24%), 1fr));
+  gap: 10px;
+}
+
+.viz-stat {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.viz-stat-value {
+  font-size: var(--font-size-h2);
+  font-weight: var(--font-weight-medium);
+  line-height: 1.25;
+}
+
+.viz-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+}
+
+.progress {
+  display: flex;
+  height: 6px;
+  margin-block: calc((var(--line-height-normal, 1.5em) - 6px) / 2);
+  overflow: hidden;
+  border: 0;
+  border-radius: var(--radius-full);
+  background: var(--muted);
+}
+
+.progress-bar {
+  height: 100%;
+  flex-shrink: 0;
+  border: 0;
+  background: var(--viz-series-1);
+}
+
+.viz-badge {
+  padding: 3px 8px;
+  border-radius: var(--radius-full);
+  color: var(--accent-foreground);
+  background: var(--accent);
+  font-weight: var(--font-weight-medium);
+}
+
+small,
+.text-small,
+.viz-badge {
+  font-size: var(--font-size-small);
+  line-height: var(--line-height-small);
+}
+
+.text-muted {
+  color: var(--muted-foreground);
+}
+
+.tabular-nums {
+  font-variant-numeric: tabular-nums;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.viz-controls {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+}
+
+.viz-controls &gt; .form-label {
+  display: grid;
+  min-width: min(100%, 260px);
+  flex: 1 1 280px;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: baseline;
+  gap: 2px 12px;
+  margin-bottom: 0;
+}
+
+.viz-controls &gt; .form-label &gt; :is(.form-control, .form-range, .form-select) {
+  grid-column: 1 / -1;
+}
+
+.btn,
+.form-check-input,
+.form-control,
+.form-range,
+.form-select {
+  font: inherit;
+}
+
+.btn {
+  appearance: button;
+  display: inline-flex;
+  inline-size: fit-content;
+  max-inline-size: 100%;
+  min-height: 28px;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  margin: 0;
+  padding: 0 8px;
+  -webkit-app-region: no-drag;
+  border: 1px solid var(--input);
+  border-radius: var(--radius-lg);
+  corner-shape: superellipse(1.5);
+  color: var(--secondary-foreground);
+  background: var(--secondary);
+  cursor: var(--cursor-interaction, pointer);
+  text-align: center;
+  text-decoration: none;
+  white-space: nowrap;
+  user-select: none;
+  -webkit-font-smoothing: antialiased;
+}
+
+.btn:is(.btn-block, .viz-tile) {
+  inline-size: 100%;
+}
+
+.btn.viz-tile {
+  min-width: 0;
+  overflow-wrap: anywhere;
+  white-space: normal;
+}
+
+a.btn {
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.btn:not(:disabled):hover {
+  background: color-mix(in srgb, var(--foreground) 6%, var(--secondary));
+}
+
+.btn-primary {
+  border-color: transparent;
+  color: var(--primary-foreground);
+  background: var(--foreground);
+  background-clip: padding-box;
+}
+
+.btn-primary .text-muted {
+  color: color-mix(in srgb, var(--primary-foreground) 50%, transparent);
+}
+
+.btn-primary:not(:disabled):hover {
+  background: color-mix(in srgb, var(--foreground) 80%, transparent);
+  background-clip: padding-box;
+}
+
+.btn-ghost {
+  border-color: transparent;
+  color: var(--muted-foreground);
+  background: transparent;
+}
+
+.btn-ghost:not(:disabled):hover {
+  color: var(--foreground);
+  background: color-mix(in srgb, var(--foreground) 6%, var(--secondary));
+}
+
+.btn:disabled {
+  cursor: not-allowed;
+  opacity: 0.4;
+}
+
+[data-lucide] {
+  stroke-width: 1.6;
+}
+
+.form-label {
+  display: block;
+  margin-bottom: 6px;
+  color: var(--foreground);
+}
+
+.form-control {
+  display: block;
+  width: 100%;
+  min-height: 28px;
+  padding: 0 8px;
+  outline: none;
+  border: 1px solid var(--input);
+  border-radius: var(--radius-lg);
+  corner-shape: superellipse(1.5);
+  color: var(--foreground);
+  background: var(--secondary);
+}
+
+.form-control::placeholder {
+  color: var(--muted-foreground);
+}
+
+.form-control[type=&quot;file&quot;] {
+  padding: 0;
+  overflow: hidden;
+  cursor: var(--cursor-interaction, pointer);
+}
+
+.form-control[type=&quot;file&quot;]::file-selector-button {
+  min-height: 26px;
+  margin-right: 8px;
+  padding: 0 8px;
+  border: 0;
+  border-right: 1px solid var(--input);
+  color: var(--secondary-foreground);
+  background: var(--secondary);
+  cursor: inherit;
+  font: inherit;
+}
+
+.form-control[type=&quot;file&quot;]:not(:disabled):hover::file-selector-button {
+  background: color-mix(in srgb, var(--foreground) 6%, var(--secondary));
+}
+
+.form-control-color[type=&quot;color&quot;] {
+  width: 40px;
+  height: 28px;
+  padding: 3px;
+  cursor: var(--cursor-interaction, pointer);
+}
+
+.form-control-color[type=&quot;color&quot;]::-webkit-color-swatch-wrapper {
+  padding: 0;
+}
+
+.form-control-color[type=&quot;color&quot;]::-webkit-color-swatch {
+  border: 0;
+  border-radius: calc(var(--radius-lg) - 4px);
+  corner-shape: superellipse(1.5);
+}
+
+textarea.form-control {
+  height: auto;
+  min-height: 72px;
+  padding: 8px 10px;
+  resize: vertical;
+}
+
+.form-control:focus-visible {
+  border-color: var(--ring);
+  box-shadow: inset 0 0 0 1px var(--ring);
+}
+
+.form-control:disabled,
+.form-select:disabled {
+  cursor: not-allowed;
+  opacity: 0.4;
+}
+
+.form-select {
+  appearance: none;
+  display: block;
+  width: 100%;
+  min-height: 28px;
+  margin: 0;
+  padding: 0 32px 0 8px;
+  outline: none;
+  border: 1px solid var(--input);
+  border-radius: var(--radius-lg);
+  corner-shape: superellipse(1.5);
+  color: var(--foreground);
+  background-color: var(--secondary);
+  background-image:
+    linear-gradient(45deg, transparent 50%, var(--muted-foreground) 50%),
+    linear-gradient(135deg, var(--muted-foreground) 50%, transparent 50%);
+  background-position:
+    calc(100% - 14px) 50%,
+    calc(100% - 10px) 50%;
+  background-repeat: no-repeat;
+  background-size: 4px 4px;
+  cursor: var(--cursor-interaction, default);
+}
+
+.form-select:not(:disabled):hover {
+  background-color: color-mix(in srgb, var(--foreground) 6%, var(--secondary));
+}
+
+.form-select:focus-visible {
+  border-color: var(--ring);
+  box-shadow: inset 0 0 0 1px var(--ring);
+}
+
+.form-check {
+  display: flex;
+  min-height: 20px;
+  align-items: center;
+  gap: 6px;
+}
+
+.form-check-input {
+  appearance: none;
+  width: 14px;
+  height: 14px;
+  flex: 0 0 auto;
+  margin: 0;
+  border: 1px solid var(--input);
+  color: var(--primary-foreground);
+  background-color: transparent;
+  cursor: var(--cursor-interaction, default);
+  transition:
+    background-color 150ms,
+    border-color 150ms,
+    box-shadow 150ms;
+}
+
+.form-check:not(.form-switch) .form-check-input[type=&quot;checkbox&quot;] {
+  border-color: var(--input);
+  border-radius: var(--radius-sm);
+  corner-shape: superellipse(1.5);
+  background-color: var(--secondary);
+  box-shadow: var(--shadow-sm);
+}
+
+.form-check:not(.form-switch)
+  .form-check-input:not(:disabled):not(:checked):hover {
+  background-color: var(--card);
+}
+
+.form-check:not(.form-switch) .form-check-input[type=&quot;checkbox&quot;]:checked {
+  border-color: var(--primary);
+  background-color: var(--primary);
+}
+
+.form-check:not(.form-switch)
+  .form-check-input[type=&quot;checkbox&quot;]:checked::before {
+  display: block;
+  width: 100%;
+  height: 100%;
+  background: var(--primary-foreground);
+  content: &quot;&quot;;
+  mask: var(--checkmark-image) center / 12px 12px no-repeat;
+}
+
+.form-check-input[type=&quot;radio&quot;] {
+  width: 14px;
+  height: 14px;
+  border-radius: var(--radius-full);
+}
+
+.form-check-input[type=&quot;radio&quot;]:checked {
+  border: 2px solid var(--primary);
+  background:
+    radial-gradient(circle, var(--primary-foreground) 0 2.5px, transparent 3px),
+    var(--primary);
+}
+
+.form-check:not(.form-switch) .form-check-input:focus-visible {
+  outline: 2px solid var(--ring);
+  outline-offset: 2px;
+}
+
+.form-check:not(.form-switch) .form-check-input:disabled {
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+.form-check:not(.form-switch) .form-check-input:disabled + .form-check-label {
+  cursor: not-allowed;
+}
+
+.form-switch .form-check-input:disabled,
+.form-switch .form-check-input:disabled + .form-check-label {
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+.form-check-label {
+  color: var(--foreground);
+  cursor: var(--cursor-interaction, default);
+}
+
+.form-switch .form-check-input {
+  position: relative;
+  width: 32px;
+  height: 20px;
+  border: 0;
+  border-radius: var(--radius-full);
+  background: var(--muted);
+  box-shadow: none;
+  transition: background-color 200ms cubic-bezier(0, 0, 0.2, 1);
+}
+
+.form-switch .form-check-input::before {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 16px;
+  height: 16px;
+  box-sizing: border-box;
+  border: 1px solid light-dark(var(--primary-foreground), var(--foreground));
+  border-radius: var(--radius-full);
+  background: light-dark(var(--primary-foreground), var(--foreground));
+  box-shadow: var(--shadow-sm);
+  content: &quot;&quot;;
+  transform: translate(2px, -50%);
+  transition: transform 200ms cubic-bezier(0, 0, 0.2, 1);
+}
+
+.form-switch .form-check-input:checked {
+  background: var(--primary);
+}
+
+.form-switch .form-check-input:checked::before {
+  transform: translate(14px, -50%);
+}
+
+.form-switch .form-check-input:focus-visible {
+  box-shadow: 0 0 0 2px var(--ring);
+}
+
+.form-range {
+  appearance: none;
+  display: block;
+  width: 100%;
+  height: 28px;
+  flex: 1;
+  margin: 0;
+  padding: 0;
+  outline: none;
+  border: 0;
+  accent-color: var(--primary);
+  background: linear-gradient(
+      color-mix(in srgb, var(--foreground) 7%, transparent),
+      color-mix(in srgb, var(--foreground) 7%, transparent)
+    )
+    center / 100% 2px no-repeat;
+}
+
+.form-range::-webkit-slider-runnable-track {
+  height: 28px;
+  background: transparent;
+}
+
+.form-range::-webkit-slider-thumb {
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  margin-top: 4px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-full);
+  background: light-dark(var(--primary-foreground), var(--foreground));
+}
+
+.form-range:focus-visible::-webkit-slider-thumb {
+  border-color: var(--ring);
+  box-shadow: inset 0 0 0 1px var(--ring);
+}
+
+.form-range::-moz-range-track {
+  height: 28px;
+  background: transparent;
+}
+
+.form-range::-moz-range-thumb {
+  width: 20px;
+  height: 20px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-full);
+  background: light-dark(var(--primary-foreground), var(--foreground));
+}
+
+.form-range:focus-visible::-moz-range-thumb {
+  border-color: var(--ring);
+  box-shadow: inset 0 0 0 1px var(--ring);
+}
+
+.form-range:disabled {
+  cursor: not-allowed;
+  opacity: 0.4;
+}
+
+.btn:not(.btn-primary, .viz-tile):is(
+  [aria-pressed=&quot;true&quot;],
+  [aria-selected=&quot;true&quot;],
+  .is-selected
+) {
+  border-color: var(--primary);
+  color: var(--primary-foreground);
+  background: var(--primary);
+}
+
+.btn.viz-tile:is([aria-pressed=&quot;true&quot;], [aria-selected=&quot;true&quot;], .is-selected) {
+  border-color: var(--primary);
+  box-shadow: inset 0 0 0 1px var(--primary);
+}
+
+.btn:focus-visible {
+  outline: 2px solid var(--ring);
+  outline-offset: 2px;
+}
+
+@media (pointer: coarse) {
+  .btn,
+  .form-control,
+  .form-select {
+    min-width: 44px;
+    min-height: 44px;
+  }
+
+  .form-control,
+  .form-select {
+    font-size: max(16px, var(--font-size-normal));
+  }
+
+  .form-control[type=&quot;file&quot;]::file-selector-button {
+    min-width: 44px;
+    min-height: 44px;
+  }
+
+  .form-control-color[type=&quot;color&quot;] {
+    width: 44px;
+    height: 44px;
+  }
+
+  .form-control:is(
+    [type=&quot;date&quot;],
+    [type=&quot;datetime-local&quot;],
+    [type=&quot;month&quot;],
+    [type=&quot;time&quot;],
+    [type=&quot;week&quot;]
+  ) {
+    min-width: 0;
+    max-width: 100%;
+    padding-block: 8px;
+  }
+
+  .form-check {
+    min-height: 44px;
+    padding-inline: 15px;
+  }
+
+  .form-check-input {
+    position: relative;
+  }
+
+  .form-check-input::after {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 44px;
+    height: 44px;
+    content: &quot;&quot;;
+    transform: translate(-50%, -50%);
+  }
+
+  .form-check-label {
+    display: inline-flex;
+    min-width: 44px;
+    min-height: 44px;
+    align-items: center;
+  }
+
+  .form-range {
+    height: 44px;
+    touch-action: pan-y;
+  }
+
+  .form-range::-webkit-slider-runnable-track {
+    height: 44px;
+  }
+
+  .form-range::-moz-range-track {
+    height: 44px;
+  }
+
+  .form-range::-webkit-slider-thumb {
+    margin-top: 12px;
+  }
+}
+
+svg {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+#widget &gt; svg {
+  width: 100%;
+}
+
+/* Model-authored chart rules can otherwise stretch icons after these styles load. */
+svg.lucide {
+  display: block;
+  width: 16px !important;
+  height: 16px !important;
+  flex: none;
+  margin: 0 !important;
+  stroke-width: 1.6;
+}
+
+.text-warning,
+.text-destructive {
+  color: var(--destructive);
+}
+
+html&gt;body{padding:0}&lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;div id=&quot;rm-prototype&quot;&gt;
+  &lt;style&gt;
+    #rm-prototype {
+      color-scheme: light dark;
+      --rm-bg: light-dark(#eef3f8, #10151d);
+      --rm-surface: light-dark(#ffffff, #19212c);
+      --rm-surface-2: light-dark(#f6f8fb, #222c38);
+      --rm-text: light-dark(#17212b, #eef3f8);
+      --rm-muted: light-dark(#647284, #aeb9c6);
+      --rm-line: light-dark(#dfe6ee, #344150);
+      --rm-brand: light-dark(#1f6feb, #6ea8fe);
+      --rm-brand-soft: light-dark(#e8f1ff, #213653);
+      --rm-good: light-dark(#18794e, #55c98b);
+      --rm-warn: light-dark(#9a6700, #e7b84b);
+      --rm-bad: light-dark(#c43832, #f27772);
+      --rm-shadow: light-dark(0 14px 40px rgba(42, 61, 80, .12), 0 14px 40px rgba(0, 0, 0, .28));
+      font-family: Inter, &quot;Microsoft YaHei&quot;, system-ui, sans-serif;
+      color: var(--rm-text);
+    }
+    #rm-prototype * { box-sizing: border-box; }
+    #rm-prototype button, #rm-prototype input, #rm-prototype select, #rm-prototype textarea { font: inherit; }
+    #rm-prototype button { cursor: pointer; }
+    #rm-prototype .rm-window {
+      display: grid;
+      grid-template-columns: 184px minmax(0, 1fr);
+      min-height: 690px;
+      background: var(--rm-bg);
+      border: 1px solid var(--rm-line);
+      border-radius: 14px;
+      overflow: hidden;
+      box-shadow: var(--rm-shadow);
+    }
+    #rm-prototype .rm-sidebar { background: var(--rm-surface); border-right: 1px solid var(--rm-line); padding: 18px 12px; }
+    #rm-prototype .rm-brand { display: flex; align-items: center; gap: 10px; padding: 4px 8px 20px; font-weight: 500; }
+    #rm-prototype .rm-brand-mark { display:grid; place-items:center; width:30px; height:30px; border-radius:9px; background:var(--rm-brand); color:light-dark(#fff,#10223a); }
+    #rm-prototype .rm-nav { display: grid; gap: 5px; }
+    #rm-prototype .rm-nav button { display:flex; align-items:center; gap:9px; width:100%; border:0; border-radius:8px; padding:10px 11px; background:transparent; color:var(--rm-muted); text-align:left; }
+    #rm-prototype .rm-nav button[aria-selected=&quot;true&quot;] { background:var(--rm-brand-soft); color:var(--rm-brand); font-weight:500; }
+    #rm-prototype .rm-main { min-width:0; }
+    #rm-prototype .rm-topbar { display:flex; justify-content:space-between; align-items:center; gap:12px; padding:13px 22px; background:var(--rm-surface); border-bottom:1px solid var(--rm-line); }
+    #rm-prototype .rm-topbar-name { font-weight:500; }
+    #rm-prototype .rm-topbar-user { display:flex; align-items:center; gap:9px; color:var(--rm-muted); }
+    #rm-prototype .rm-avatar { display:grid; place-items:center; width:30px; height:30px; border-radius:50%; background:var(--rm-brand-soft); color:var(--rm-brand); font-weight:500; }
+    #rm-prototype .rm-content { padding:22px; }
+    #rm-prototype .rm-page { display:none; }
+    #rm-prototype .rm-page.is-active { display:block; }
+    #rm-prototype .rm-page-head { display:flex; justify-content:space-between; align-items:flex-start; gap:16px; margin-bottom:18px; }
+    #rm-prototype h2, #rm-prototype h3, #rm-prototype p { margin:0; }
+    #rm-prototype h2 { font-size:22px; font-weight:500; }
+    #rm-prototype h3 { font-size:15px; font-weight:500; }
+    #rm-prototype .rm-sub { margin-top:4px; color:var(--rm-muted); font-size:13px; }
+    #rm-prototype .rm-primary, #rm-prototype .rm-secondary, #rm-prototype .rm-ghost { border-radius:8px; padding:9px 13px; }
+    #rm-prototype .rm-primary { border:1px solid var(--rm-brand); background:var(--rm-brand); color:light-dark(#fff,#10223a); }
+    #rm-prototype .rm-secondary { border:1px solid var(--rm-line); background:var(--rm-surface); color:var(--rm-text); }
+    #rm-prototype .rm-ghost { border:0; background:transparent; color:var(--rm-brand); padding:5px; }
+    #rm-prototype .rm-metrics { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:12px; margin-bottom:18px; }
+    #rm-prototype .rm-metric, #rm-prototype .rm-panel { background:var(--rm-surface); border:1px solid var(--rm-line); border-radius:11px; }
+    #rm-prototype .rm-metric { padding:15px; }
+    #rm-prototype .rm-metric-label { color:var(--rm-muted); font-size:12px; }
+    #rm-prototype .rm-metric-value { margin-top:7px; font-size:25px; font-weight:500; }
+    #rm-prototype .rm-metric-note { margin-top:5px; color:var(--rm-muted); font-size:12px; }
+    #rm-prototype .rm-grid-2 { display:grid; grid-template-columns:1.2fr .8fr; gap:14px; }
+    #rm-prototype .rm-panel { padding:16px; }
+    #rm-prototype .rm-panel-head { display:flex; justify-content:space-between; align-items:center; gap:10px; margin-bottom:12px; }
+    #rm-prototype .rm-task-list { display:grid; gap:1px; }
+    #rm-prototype .rm-task { display:grid; grid-template-columns:8px 1fr auto; gap:10px; align-items:center; padding:11px 0; border-bottom:1px solid var(--rm-line); }
+    #rm-prototype .rm-task:last-child { border-bottom:0; }
+    #rm-prototype .rm-dot { width:8px; height:8px; border-radius:50%; background:var(--rm-brand); }
+    #rm-prototype .rm-dot.warn { background:var(--rm-warn); }
+    #rm-prototype .rm-dot.bad { background:var(--rm-bad); }
+    #rm-prototype .rm-task-title { font-size:13px; }
+    #rm-prototype .rm-task-meta { margin-top:3px; color:var(--rm-muted); font-size:12px; }
+    #rm-prototype .rm-demand-progress { display:grid; gap:14px; }
+    #rm-prototype .rm-demand-row { display:grid; gap:6px; }
+    #rm-prototype .rm-demand-line { display:flex; justify-content:space-between; gap:10px; font-size:13px; }
+    #rm-prototype .rm-track { height:7px; border-radius:999px; background:var(--rm-surface-2); overflow:hidden; }
+    #rm-prototype .rm-track &gt; span { display:block; height:100%; background:var(--rm-brand); }
+    #rm-prototype .rm-toolbar { display:flex; flex-wrap:wrap; align-items:center; gap:8px; margin-bottom:14px; }
+    #rm-prototype .rm-field { min-height:38px; border:1px solid var(--rm-line); border-radius:8px; padding:8px 10px; background:var(--rm-surface); color:var(--rm-text); }
+    #rm-prototype .rm-search { min-width:220px; flex:1; }
+    #rm-prototype .rm-table-wrap { overflow-x:auto; background:var(--rm-surface); border:1px solid var(--rm-line); border-radius:11px; }
+    #rm-prototype table { width:100%; border-collapse:collapse; font-size:13px; }
+    #rm-prototype th { color:var(--rm-muted); font-weight:400; text-align:left; background:var(--rm-surface-2); }
+    #rm-prototype th, #rm-prototype td { padding:11px 12px; border-bottom:1px solid var(--rm-line); white-space:nowrap; }
+    #rm-prototype tr:last-child td { border-bottom:0; }
+    #rm-prototype .rm-status { display:inline-flex; align-items:center; border-radius:999px; padding:4px 8px; background:var(--rm-brand-soft); color:var(--rm-brand); font-size:12px; }
+    #rm-prototype .rm-status.good { color:var(--rm-good); background:color-mix(in srgb,var(--rm-good) 13%,transparent); }
+    #rm-prototype .rm-status.bad { color:var(--rm-bad); background:color-mix(in srgb,var(--rm-bad) 12%,transparent); }
+    #rm-prototype .rm-board { display:grid; grid-template-columns:repeat(4,minmax(190px,1fr)); gap:12px; overflow-x:auto; padding-bottom:4px; }
+    #rm-prototype .rm-lane { min-width:190px; }
+    #rm-prototype .rm-lane-head { display:flex; justify-content:space-between; align-items:center; padding:0 2px 9px; }
+    #rm-prototype .rm-lane-count { color:var(--rm-muted); font-size:12px; }
+    #rm-prototype .rm-candidate { width:100%; display:block; text-align:left; margin-bottom:9px; padding:12px; border:1px solid var(--rm-line); border-radius:10px; background:var(--rm-surface); color:var(--rm-text); }
+    #rm-prototype .rm-candidate:hover { border-color:var(--rm-brand); }
+    #rm-prototype .rm-card-name { font-weight:500; }
+    #rm-prototype .rm-card-role { margin-top:4px; color:var(--rm-muted); font-size:12px; }
+    #rm-prototype .rm-card-bottom { display:flex; justify-content:space-between; align-items:center; gap:6px; margin-top:10px; font-size:11px; color:var(--rm-muted); }
+    #rm-prototype .rm-alert { color:var(--rm-bad); }
+    #rm-prototype .rm-recommend-entry { display:grid; grid-template-columns:1fr 1.3fr 1fr .8fr auto; gap:10px; align-items:end; margin-bottom:16px; }
+    #rm-prototype label { display:grid; gap:5px; color:var(--rm-muted); font-size:12px; }
+    #rm-prototype .rm-entry-message { margin:12px 0; min-height:18px; color:var(--rm-good); font-size:13px; }
+    #rm-prototype .rm-funnel { display:flex; align-items:center; justify-content:center; gap:5px; padding:8px 0 18px; overflow-x:auto; }
+    #rm-prototype .rm-funnel-step { min-width:84px; text-align:center; }
+    #rm-prototype .rm-funnel-mark { display:grid; place-items:center; height:58px; margin:auto; background:var(--rm-brand-soft); color:var(--rm-brand); clip-path:polygon(8% 0,92% 0,82% 100%,18% 100%); font-size:19px; font-weight:500; }
+    #rm-prototype .rm-funnel-label { margin-top:6px; color:var(--rm-muted); font-size:11px; }
+    #rm-prototype .rm-arrow { color:var(--rm-muted); }
+    #rm-prototype .rm-bars { display:grid; gap:12px; }
+    #rm-prototype .rm-bar-row { display:grid; grid-template-columns:62px 1fr 34px; gap:9px; align-items:center; font-size:12px; }
+    #rm-prototype .rm-bar { height:9px; background:var(--rm-surface-2); border-radius:99px; overflow:hidden; }
+    #rm-prototype .rm-bar &gt; span { display:block; height:100%; background:var(--rm-brand); }
+    #rm-prototype .rm-detail { display:none; margin-top:14px; background:var(--rm-surface); border:1px solid var(--rm-line); border-radius:11px; padding:16px; }
+    #rm-prototype .rm-detail.is-open { display:block; }
+    #rm-prototype .rm-detail-head { display:flex; justify-content:space-between; gap:14px; align-items:flex-start; }
+    #rm-prototype .rm-timeline { margin-top:14px; display:grid; gap:10px; }
+    #rm-prototype .rm-event { display:grid; grid-template-columns:92px 10px 1fr; gap:9px; align-items:start; font-size:12px; }
+    #rm-prototype .rm-event-time { color:var(--rm-muted); }
+    #rm-prototype .rm-event-dot { width:8px; height:8px; margin-top:4px; border-radius:50%; background:var(--rm-brand); }
+    #rm-prototype .rm-modal-layer { display:none; position:absolute; inset:0; z-index:5; align-items:center; justify-content:center; padding:18px; background:light-dark(rgba(21,33,45,.34),rgba(0,0,0,.52)); }
+    #rm-prototype .rm-modal-layer.is-open { display:flex; }
+    #rm-prototype .rm-window { position:relative; }
+    #rm-prototype .rm-modal { width:min(440px,100%); background:var(--rm-surface); border:1px solid var(--rm-line); border-radius:12px; padding:18px; box-shadow:var(--rm-shadow); }
+    #rm-prototype .rm-modal-fields { display:grid; gap:11px; margin:15px 0; }
+    #rm-prototype .rm-modal-actions { display:flex; justify-content:flex-end; gap:8px; }
+    #rm-prototype .rm-segment { display:flex; gap:4px; padding:3px; background:var(--rm-surface-2); border-radius:9px; }
+    #rm-prototype .rm-segment button { border:0; border-radius:7px; padding:7px 10px; background:transparent; color:var(--rm-muted); }
+    #rm-prototype .rm-segment button[aria-pressed=&quot;true&quot;] { background:var(--rm-surface); color:var(--rm-text); }
+    @media (max-width: 760px) {
+      #rm-prototype .rm-window { grid-template-columns:1fr; }
+      #rm-prototype .rm-sidebar { border-right:0; border-bottom:1px solid var(--rm-line); padding:10px; }
+      #rm-prototype .rm-brand { padding-bottom:9px; }
+      #rm-prototype .rm-nav { display:flex; overflow-x:auto; }
+      #rm-prototype .rm-nav button { width:auto; white-space:nowrap; }
+      #rm-prototype .rm-metrics { grid-template-columns:repeat(2,minmax(0,1fr)); }
+      #rm-prototype .rm-grid-2 { grid-template-columns:1fr; }
+      #rm-prototype .rm-recommend-entry { grid-template-columns:1fr 1fr; }
+      #rm-prototype .rm-recommend-entry button { grid-column:1/-1; }
+      #rm-prototype .rm-board { grid-template-columns:repeat(4,220px); }
+    }
+    @media (max-width: 430px) {
+      #rm-prototype .rm-content { padding:15px; }
+      #rm-prototype .rm-topbar { padding:11px 15px; }
+      #rm-prototype .rm-metrics { grid-template-columns:1fr 1fr; }
+      #rm-prototype .rm-recommend-entry { grid-template-columns:1fr; }
+      #rm-prototype .rm-recommend-entry button { grid-column:auto; }
+      #rm-prototype .rm-page-head { flex-direction:column; }
+    }
+  &lt;/style&gt;
+
+  &lt;section class=&quot;rm-window&quot; aria-label=&quot;招聘信息管理系统V1原型&quot;&gt;
+    &lt;aside class=&quot;rm-sidebar&quot;&gt;
+      &lt;div class=&quot;rm-brand&quot;&gt;&lt;span class=&quot;rm-brand-mark&quot;&gt;&lt;i data-lucide=&quot;users&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;&lt;/span&gt;&lt;span&gt;招聘管理&lt;/span&gt;&lt;/div&gt;
+      &lt;nav class=&quot;rm-nav&quot; aria-label=&quot;主导航&quot;&gt;
+        &lt;button type=&quot;button&quot; data-page=&quot;workbench&quot; aria-selected=&quot;true&quot;&gt;&lt;i data-lucide=&quot;layout-dashboard&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;工作台&lt;/button&gt;
+        &lt;button type=&quot;button&quot; data-page=&quot;demands&quot; aria-selected=&quot;false&quot;&gt;&lt;i data-lucide=&quot;briefcase-business&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;招聘需求&lt;/button&gt;
+        &lt;button type=&quot;button&quot; data-page=&quot;candidates&quot; aria-selected=&quot;false&quot;&gt;&lt;i data-lucide=&quot;contact&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;候选人&lt;/button&gt;
+        &lt;button type=&quot;button&quot; data-page=&quot;recommend&quot; aria-selected=&quot;false&quot;&gt;&lt;i data-lucide=&quot;file-plus-2&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;简历推荐&lt;/button&gt;
+        &lt;button type=&quot;button&quot; data-page=&quot;dashboard&quot; aria-selected=&quot;false&quot;&gt;&lt;i data-lucide=&quot;chart-no-axes-combined&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;数据看板&lt;/button&gt;
+      &lt;/nav&gt;
+    &lt;/aside&gt;
+
+    &lt;main class=&quot;rm-main&quot;&gt;
+      &lt;header class=&quot;rm-topbar&quot;&gt;
+        &lt;span class=&quot;rm-topbar-name&quot; id=&quot;rm-page-title&quot;&gt;工作台&lt;/span&gt;
+        &lt;span class=&quot;rm-topbar-user&quot;&gt;&lt;span class=&quot;rm-avatar&quot;&gt;陈&lt;/span&gt;陈雪 · 普通HR&lt;/span&gt;
+      &lt;/header&gt;
+      &lt;div class=&quot;rm-content&quot;&gt;
+        &lt;section class=&quot;rm-page is-active&quot; data-page-panel=&quot;workbench&quot;&gt;
+          &lt;div class=&quot;rm-page-head&quot;&gt;&lt;div&gt;&lt;h2&gt;早上好，陈雪&lt;/h2&gt;&lt;p class=&quot;rm-sub&quot;&gt;今天有 6 项招聘任务需要处理&lt;/p&gt;&lt;/div&gt;&lt;button class=&quot;rm-primary&quot; type=&quot;button&quot; data-jump=&quot;recommend&quot;&gt;录入今日推荐&lt;/button&gt;&lt;/div&gt;
+          &lt;div class=&quot;rm-metrics&quot;&gt;
+            &lt;div class=&quot;rm-metric&quot;&gt;&lt;div class=&quot;rm-metric-label&quot;&gt;进行中候选人&lt;/div&gt;&lt;div class=&quot;rm-metric-value&quot;&gt;24&lt;/div&gt;&lt;div class=&quot;rm-metric-note&quot;&gt;覆盖 6 个需求&lt;/div&gt;&lt;/div&gt;
+            &lt;div class=&quot;rm-metric&quot;&gt;&lt;div class=&quot;rm-metric-label&quot;&gt;今日面试&lt;/div&gt;&lt;div class=&quot;rm-metric-value&quot;&gt;3&lt;/div&gt;&lt;div class=&quot;rm-metric-note&quot;&gt;初试 2 · 复试 1&lt;/div&gt;&lt;/div&gt;
+            &lt;div class=&quot;rm-metric&quot;&gt;&lt;div class=&quot;rm-metric-label&quot;&gt;待反馈&lt;/div&gt;&lt;div class=&quot;rm-metric-value&quot;&gt;2&lt;/div&gt;&lt;div class=&quot;rm-metric-note&quot;&gt;其中 1 项已超期&lt;/div&gt;&lt;/div&gt;
+            &lt;div class=&quot;rm-metric&quot;&gt;&lt;div class=&quot;rm-metric-label&quot;&gt;近期待报到&lt;/div&gt;&lt;div class=&quot;rm-metric-value&quot;&gt;4&lt;/div&gt;&lt;div class=&quot;rm-metric-note&quot;&gt;未来 14 天&lt;/div&gt;&lt;/div&gt;
+          &lt;/div&gt;
+          &lt;div class=&quot;rm-grid-2&quot;&gt;
+            &lt;div class=&quot;rm-panel&quot;&gt;
+              &lt;div class=&quot;rm-panel-head&quot;&gt;&lt;h3&gt;我的待办&lt;/h3&gt;&lt;button class=&quot;rm-ghost&quot; type=&quot;button&quot; data-jump=&quot;candidates&quot;&gt;查看全部&lt;/button&gt;&lt;/div&gt;
+              &lt;div class=&quot;rm-task-list&quot;&gt;
+                &lt;div class=&quot;rm-task&quot;&gt;&lt;span class=&quot;rm-dot&quot;&gt;&lt;/span&gt;&lt;div&gt;&lt;div class=&quot;rm-task-title&quot;&gt;王仕琦 · 测试工程师初试&lt;/div&gt;&lt;div class=&quot;rm-task-meta&quot;&gt;今天 14:00 · 线上面试&lt;/div&gt;&lt;/div&gt;&lt;button class=&quot;rm-secondary&quot; type=&quot;button&quot; data-candidate=&quot;王仕琦&quot;&gt;查看&lt;/button&gt;&lt;/div&gt;
+                &lt;div class=&quot;rm-task&quot;&gt;&lt;span class=&quot;rm-dot bad&quot;&gt;&lt;/span&gt;&lt;div&gt;&lt;div class=&quot;rm-task-title&quot;&gt;严哲 · 复试结果待反馈&lt;/div&gt;&lt;div class=&quot;rm-task-meta&quot;&gt;已超期 1 天&lt;/div&gt;&lt;/div&gt;&lt;button class=&quot;rm-secondary&quot; type=&quot;button&quot; data-open-update&gt;录结果&lt;/button&gt;&lt;/div&gt;
+                &lt;div class=&quot;rm-task&quot;&gt;&lt;span class=&quot;rm-dot warn&quot;&gt;&lt;/span&gt;&lt;div&gt;&lt;div class=&quot;rm-task-title&quot;&gt;李炜晨 · Offer待确认&lt;/div&gt;&lt;div class=&quot;rm-task-meta&quot;&gt;已发送 2 天&lt;/div&gt;&lt;/div&gt;&lt;button class=&quot;rm-secondary&quot; type=&quot;button&quot; data-open-update&gt;跟进&lt;/button&gt;&lt;/div&gt;
+                &lt;div class=&quot;rm-task&quot;&gt;&lt;span class=&quot;rm-dot&quot;&gt;&lt;/span&gt;&lt;div&gt;&lt;div class=&quot;rm-task-title&quot;&gt;程文秋 · 即将报到&lt;/div&gt;&lt;div class=&quot;rm-task-meta&quot;&gt;预计 8月31日入职&lt;/div&gt;&lt;/div&gt;&lt;button class=&quot;rm-secondary&quot; type=&quot;button&quot; data-candidate=&quot;程文秋&quot;&gt;查看&lt;/button&gt;&lt;/div&gt;
+              &lt;/div&gt;
+            &lt;/div&gt;
+            &lt;div class=&quot;rm-panel&quot;&gt;
+              &lt;div class=&quot;rm-panel-head&quot;&gt;&lt;h3&gt;重点需求进度&lt;/h3&gt;&lt;button class=&quot;rm-ghost&quot; type=&quot;button&quot; data-jump=&quot;demands&quot;&gt;需求列表&lt;/button&gt;&lt;/div&gt;
+              &lt;div class=&quot;rm-demand-progress&quot;&gt;
+                &lt;div class=&quot;rm-demand-row&quot;&gt;&lt;div class=&quot;rm-demand-line&quot;&gt;&lt;span&gt;测试工程师&lt;/span&gt;&lt;span&gt;1 / 3 入职&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;rm-track&quot;&gt;&lt;span style=&quot;width:33%&quot;&gt;&lt;/span&gt;&lt;/div&gt;&lt;/div&gt;
+                &lt;div class=&quot;rm-demand-row&quot;&gt;&lt;div class=&quot;rm-demand-line&quot;&gt;&lt;span&gt;销售工程师&lt;/span&gt;&lt;span&gt;2 / 2 入职&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;rm-track&quot;&gt;&lt;span style=&quot;width:100%&quot;&gt;&lt;/span&gt;&lt;/div&gt;&lt;/div&gt;
+                &lt;div class=&quot;rm-demand-row&quot;&gt;&lt;div class=&quot;rm-demand-line&quot;&gt;&lt;span&gt;技术支持工程师&lt;/span&gt;&lt;span&gt;1 / 4 入职&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;rm-track&quot;&gt;&lt;span style=&quot;width:25%&quot;&gt;&lt;/span&gt;&lt;/div&gt;&lt;/div&gt;
+                &lt;div class=&quot;rm-demand-row&quot;&gt;&lt;div class=&quot;rm-demand-line&quot;&gt;&lt;span&gt;制造工程师&lt;/span&gt;&lt;span&gt;3 / 5 入职&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;rm-track&quot;&gt;&lt;span style=&quot;width:60%&quot;&gt;&lt;/span&gt;&lt;/div&gt;&lt;/div&gt;
+              &lt;/div&gt;
+            &lt;/div&gt;
+          &lt;/div&gt;
+        &lt;/section&gt;
+
+        &lt;section class=&quot;rm-page&quot; data-page-panel=&quot;demands&quot;&gt;
+          &lt;div class=&quot;rm-page-head&quot;&gt;&lt;div&gt;&lt;h2&gt;招聘需求&lt;/h2&gt;&lt;p class=&quot;rm-sub&quot;&gt;管理需求目标、参与HR和交付进度&lt;/p&gt;&lt;/div&gt;&lt;button class=&quot;rm-primary&quot; type=&quot;button&quot;&gt;新建招聘需求&lt;/button&gt;&lt;/div&gt;
+          &lt;div class=&quot;rm-toolbar&quot;&gt;&lt;input class=&quot;rm-field rm-search&quot; aria-label=&quot;搜索需求&quot; placeholder=&quot;搜索需求编号或岗位&quot;&gt;&lt;select class=&quot;rm-field&quot; aria-label=&quot;需求状态&quot;&gt;&lt;option&gt;全部状态&lt;/option&gt;&lt;option&gt;招聘中&lt;/option&gt;&lt;option&gt;暂停&lt;/option&gt;&lt;option&gt;已完成&lt;/option&gt;&lt;/select&gt;&lt;select class=&quot;rm-field&quot; aria-label=&quot;参与HR&quot;&gt;&lt;option&gt;全部HR&lt;/option&gt;&lt;option&gt;陈雪&lt;/option&gt;&lt;option&gt;高琴&lt;/option&gt;&lt;/select&gt;&lt;/div&gt;
+          &lt;div class=&quot;rm-table-wrap&quot;&gt;&lt;table&gt;&lt;thead&gt;&lt;tr&gt;&lt;th&gt;需求编号&lt;/th&gt;&lt;th&gt;岗位&lt;/th&gt;&lt;th&gt;公司/部门&lt;/th&gt;&lt;th&gt;招聘目标&lt;/th&gt;&lt;th&gt;已入职&lt;/th&gt;&lt;th&gt;当前候选人&lt;/th&gt;&lt;th&gt;参与HR&lt;/th&gt;&lt;th&gt;目标到岗日&lt;/th&gt;&lt;th&gt;状态&lt;/th&gt;&lt;/tr&gt;&lt;/thead&gt;&lt;tbody&gt;
+            &lt;tr&gt;&lt;td&gt;R10316&lt;/td&gt;&lt;td&gt;测试工程师&lt;/td&gt;&lt;td&gt;精密公司 / 测试部&lt;/td&gt;&lt;td&gt;3&lt;/td&gt;&lt;td&gt;1&lt;/td&gt;&lt;td&gt;12&lt;/td&gt;&lt;td&gt;陈雪、高琴&lt;/td&gt;&lt;td&gt;2026-09-30&lt;/td&gt;&lt;td&gt;&lt;span class=&quot;rm-status&quot;&gt;招聘中&lt;/span&gt;&lt;/td&gt;&lt;/tr&gt;
+            &lt;tr&gt;&lt;td&gt;R10312&lt;/td&gt;&lt;td&gt;销售工程师&lt;/td&gt;&lt;td&gt;精密公司 / 产品营销部&lt;/td&gt;&lt;td&gt;2&lt;/td&gt;&lt;td&gt;2&lt;/td&gt;&lt;td&gt;4&lt;/td&gt;&lt;td&gt;陈雪、尹雪萍&lt;/td&gt;&lt;td&gt;2026-08-31&lt;/td&gt;&lt;td&gt;&lt;span class=&quot;rm-status good&quot;&gt;已完成&lt;/span&gt;&lt;/td&gt;&lt;/tr&gt;
+            &lt;tr&gt;&lt;td&gt;R10146&lt;/td&gt;&lt;td&gt;技术支持工程师&lt;/td&gt;&lt;td&gt;精密公司 / 售后服务部&lt;/td&gt;&lt;td&gt;4&lt;/td&gt;&lt;td&gt;1&lt;/td&gt;&lt;td&gt;18&lt;/td&gt;&lt;td&gt;陈雪、朱敏&lt;/td&gt;&lt;td&gt;2026-10-15&lt;/td&gt;&lt;td&gt;&lt;span class=&quot;rm-status&quot;&gt;招聘中&lt;/span&gt;&lt;/td&gt;&lt;/tr&gt;
+          &lt;/tbody&gt;&lt;/table&gt;&lt;/div&gt;
+        &lt;/section&gt;
+
+        &lt;section class=&quot;rm-page&quot; data-page-panel=&quot;candidates&quot;&gt;
+          &lt;div class=&quot;rm-page-head&quot;&gt;&lt;div&gt;&lt;h2&gt;候选人看板&lt;/h2&gt;&lt;p class=&quot;rm-sub&quot;&gt;合格简历建档后，由招聘负责人全流程跟进&lt;/p&gt;&lt;/div&gt;&lt;button class=&quot;rm-primary&quot; type=&quot;button&quot; data-add-candidate&gt;新增合格候选人&lt;/button&gt;&lt;/div&gt;
+          &lt;div class=&quot;rm-toolbar&quot;&gt;&lt;input class=&quot;rm-field rm-search&quot; aria-label=&quot;搜索候选人&quot; placeholder=&quot;搜索姓名、岗位或需求编号&quot;&gt;&lt;select class=&quot;rm-field&quot; aria-label=&quot;招聘需求&quot;&gt;&lt;option&gt;全部需求&lt;/option&gt;&lt;option&gt;R10316 测试工程师&lt;/option&gt;&lt;option&gt;R10146 技术支持工程师&lt;/option&gt;&lt;/select&gt;&lt;select class=&quot;rm-field&quot; aria-label=&quot;风险筛选&quot;&gt;&lt;option&gt;全部候选人&lt;/option&gt;&lt;option&gt;仅看超期&lt;/option&gt;&lt;option&gt;仅看今日待办&lt;/option&gt;&lt;/select&gt;&lt;/div&gt;
+          &lt;div class=&quot;rm-board&quot;&gt;
+            &lt;section class=&quot;rm-lane&quot;&gt;&lt;div class=&quot;rm-lane-head&quot;&gt;&lt;h3&gt;初试阶段&lt;/h3&gt;&lt;span class=&quot;rm-lane-count&quot;&gt;8人&lt;/span&gt;&lt;/div&gt;
+              &lt;button class=&quot;rm-candidate&quot; type=&quot;button&quot; data-candidate=&quot;王仕琦&quot;&gt;&lt;span class=&quot;rm-card-name&quot;&gt;王仕琦&lt;/span&gt;&lt;span class=&quot;rm-card-role&quot;&gt;测试工程师 · R10316&lt;/span&gt;&lt;span class=&quot;rm-card-bottom&quot;&gt;&lt;span class=&quot;rm-status&quot;&gt;初试已预约&lt;/span&gt;&lt;span&gt;今天 14:00&lt;/span&gt;&lt;/span&gt;&lt;/button&gt;
+              &lt;button class=&quot;rm-candidate&quot; type=&quot;button&quot; data-candidate=&quot;张灿&quot;&gt;&lt;span class=&quot;rm-card-name&quot;&gt;张灿&lt;/span&gt;&lt;span class=&quot;rm-card-role&quot;&gt;测试工程师 · R10316&lt;/span&gt;&lt;span class=&quot;rm-card-bottom&quot;&gt;&lt;span class=&quot;rm-status&quot;&gt;初试待定&lt;/span&gt;&lt;span class=&quot;rm-alert&quot;&gt;超期1天&lt;/span&gt;&lt;/span&gt;&lt;/button&gt;
+            &lt;/section&gt;
+            &lt;section class=&quot;rm-lane&quot;&gt;&lt;div class=&quot;rm-lane-head&quot;&gt;&lt;h3&gt;复试阶段&lt;/h3&gt;&lt;span class=&quot;rm-lane-count&quot;&gt;5人&lt;/span&gt;&lt;/div&gt;
+              &lt;button class=&quot;rm-candidate&quot; type=&quot;button&quot; data-candidate=&quot;严哲&quot;&gt;&lt;span class=&quot;rm-card-name&quot;&gt;严哲&lt;/span&gt;&lt;span class=&quot;rm-card-role&quot;&gt;技术支持工程师 · R10146&lt;/span&gt;&lt;span class=&quot;rm-card-bottom&quot;&gt;&lt;span class=&quot;rm-status&quot;&gt;复试待反馈&lt;/span&gt;&lt;span class=&quot;rm-alert&quot;&gt;待录结果&lt;/span&gt;&lt;/span&gt;&lt;/button&gt;
+              &lt;button class=&quot;rm-candidate&quot; type=&quot;button&quot; data-candidate=&quot;郑祥威&quot;&gt;&lt;span class=&quot;rm-card-name&quot;&gt;郑祥威&lt;/span&gt;&lt;span class=&quot;rm-card-role&quot;&gt;调试工程师 · R10337&lt;/span&gt;&lt;span class=&quot;rm-card-bottom&quot;&gt;&lt;span class=&quot;rm-status&quot;&gt;复试已预约&lt;/span&gt;&lt;span&gt;明天 10:00&lt;/span&gt;&lt;/span&gt;&lt;/button&gt;
+            &lt;/section&gt;
+            &lt;section class=&quot;rm-lane&quot;&gt;&lt;div class=&quot;rm-lane-head&quot;&gt;&lt;h3&gt;Offer阶段&lt;/h3&gt;&lt;span class=&quot;rm-lane-count&quot;&gt;3人&lt;/span&gt;&lt;/div&gt;
+              &lt;button class=&quot;rm-candidate&quot; type=&quot;button&quot; data-candidate=&quot;李炜晨&quot;&gt;&lt;span class=&quot;rm-card-name&quot;&gt;李炜晨&lt;/span&gt;&lt;span class=&quot;rm-card-role&quot;&gt;技术支持工程师 · R10146&lt;/span&gt;&lt;span class=&quot;rm-card-bottom&quot;&gt;&lt;span class=&quot;rm-status&quot;&gt;Offer已发&lt;/span&gt;&lt;span&gt;待确认&lt;/span&gt;&lt;/span&gt;&lt;/button&gt;
+              &lt;button class=&quot;rm-candidate&quot; type=&quot;button&quot; data-candidate=&quot;骆义飞&quot;&gt;&lt;span class=&quot;rm-card-name&quot;&gt;骆义飞&lt;/span&gt;&lt;span class=&quot;rm-card-role&quot;&gt;市场运营专员 · R10344&lt;/span&gt;&lt;span class=&quot;rm-card-bottom&quot;&gt;&lt;span class=&quot;rm-status&quot;&gt;Offer沟通中&lt;/span&gt;&lt;span&gt;今天更新&lt;/span&gt;&lt;/span&gt;&lt;/button&gt;
+            &lt;/section&gt;
+            &lt;section class=&quot;rm-lane&quot;&gt;&lt;div class=&quot;rm-lane-head&quot;&gt;&lt;h3&gt;待报到&lt;/h3&gt;&lt;span class=&quot;rm-lane-count&quot;&gt;4人&lt;/span&gt;&lt;/div&gt;
+              &lt;button class=&quot;rm-candidate&quot; type=&quot;button&quot; data-candidate=&quot;程文秋&quot;&gt;&lt;span class=&quot;rm-card-name&quot;&gt;程文秋&lt;/span&gt;&lt;span class=&quot;rm-card-role&quot;&gt;制造工程师 · R10338&lt;/span&gt;&lt;span class=&quot;rm-card-bottom&quot;&gt;&lt;span class=&quot;rm-status good&quot;&gt;已接Offer&lt;/span&gt;&lt;span&gt;8月31日&lt;/span&gt;&lt;/span&gt;&lt;/button&gt;
+            &lt;/section&gt;
+          &lt;/div&gt;
+          &lt;section class=&quot;rm-detail&quot; id=&quot;rm-detail&quot; aria-live=&quot;polite&quot;&gt;
+            &lt;div class=&quot;rm-detail-head&quot;&gt;&lt;div&gt;&lt;h3 id=&quot;rm-detail-name&quot;&gt;王仕琦 · 测试工程师&lt;/h3&gt;&lt;p class=&quot;rm-sub&quot;&gt;招聘负责人：陈雪 · 当前状态：&lt;span id=&quot;rm-detail-status&quot;&gt;初试已预约&lt;/span&gt;&lt;/p&gt;&lt;/div&gt;&lt;div&gt;&lt;button class=&quot;rm-secondary&quot; type=&quot;button&quot; data-open-out&gt;终止流程&lt;/button&gt; &lt;button class=&quot;rm-primary&quot; type=&quot;button&quot; data-open-update&gt;更新状态&lt;/button&gt;&lt;/div&gt;&lt;/div&gt;
+            &lt;div class=&quot;rm-timeline&quot;&gt;&lt;div class=&quot;rm-event&quot;&gt;&lt;span class=&quot;rm-event-time&quot;&gt;8月27日 10:20&lt;/span&gt;&lt;span class=&quot;rm-event-dot&quot;&gt;&lt;/span&gt;&lt;span&gt;初试预约成功，面试时间为8月28日14:00&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;rm-event&quot;&gt;&lt;span class=&quot;rm-event-time&quot;&gt;8月26日 16:45&lt;/span&gt;&lt;span class=&quot;rm-event-dot&quot;&gt;&lt;/span&gt;&lt;span&gt;新增合格候选人，进入待约初试&lt;/span&gt;&lt;/div&gt;&lt;/div&gt;
+          &lt;/section&gt;
+        &lt;/section&gt;
+
+        &lt;section class=&quot;rm-page&quot; data-page-panel=&quot;recommend&quot;&gt;
+          &lt;div class=&quot;rm-page-head&quot;&gt;&lt;div&gt;&lt;h2&gt;简历推荐&lt;/h2&gt;&lt;p class=&quot;rm-sub&quot;&gt;只录推荐总量；合格数由候选人建档自动汇总&lt;/p&gt;&lt;/div&gt;&lt;/div&gt;
+          &lt;div class=&quot;rm-panel&quot;&gt;
+            &lt;div class=&quot;rm-recommend-entry&quot;&gt;
+              &lt;label&gt;推荐日期&lt;input class=&quot;rm-field&quot; id=&quot;rm-rec-date&quot; type=&quot;date&quot; value=&quot;2026-08-27&quot;&gt;&lt;/label&gt;
+              &lt;label&gt;招聘需求&lt;select class=&quot;rm-field&quot; id=&quot;rm-rec-demand&quot;&gt;&lt;option&gt;R10316 测试工程师&lt;/option&gt;&lt;option&gt;R10146 技术支持工程师&lt;/option&gt;&lt;option&gt;R10312 销售工程师&lt;/option&gt;&lt;/select&gt;&lt;/label&gt;
+              &lt;label&gt;招聘渠道&lt;select class=&quot;rm-field&quot; id=&quot;rm-rec-channel&quot;&gt;&lt;option&gt;BOSS&lt;/option&gt;&lt;option&gt;猎聘&lt;/option&gt;&lt;option&gt;内推&lt;/option&gt;&lt;option&gt;RPO&lt;/option&gt;&lt;/select&gt;&lt;/label&gt;
+              &lt;label&gt;推荐数量&lt;input class=&quot;rm-field&quot; id=&quot;rm-rec-count&quot; type=&quot;number&quot; min=&quot;1&quot; value=&quot;8&quot;&gt;&lt;/label&gt;
+              &lt;button class=&quot;rm-primary&quot; type=&quot;button&quot; id=&quot;rm-save-recommend&quot;&gt;保存记录&lt;/button&gt;
+            &lt;/div&gt;
+            &lt;div class=&quot;rm-entry-message&quot; id=&quot;rm-entry-message&quot; aria-live=&quot;polite&quot;&gt;&lt;/div&gt;
+          &lt;/div&gt;
+          &lt;div class=&quot;rm-table-wrap&quot; style=&quot;margin-top:14px&quot;&gt;&lt;table&gt;&lt;thead&gt;&lt;tr&gt;&lt;th&gt;日期&lt;/th&gt;&lt;th&gt;招聘需求&lt;/th&gt;&lt;th&gt;渠道&lt;/th&gt;&lt;th&gt;推荐HR&lt;/th&gt;&lt;th&gt;推荐数&lt;/th&gt;&lt;th&gt;合格候选人&lt;/th&gt;&lt;th&gt;通过率&lt;/th&gt;&lt;th&gt;操作&lt;/th&gt;&lt;/tr&gt;&lt;/thead&gt;&lt;tbody id=&quot;rm-recommend-body&quot;&gt;
+            &lt;tr&gt;&lt;td&gt;2026-08-27&lt;/td&gt;&lt;td&gt;R10316 测试工程师&lt;/td&gt;&lt;td&gt;BOSS&lt;/td&gt;&lt;td&gt;陈雪&lt;/td&gt;&lt;td&gt;8&lt;/td&gt;&lt;td&gt;3&lt;/td&gt;&lt;td&gt;37.5%&lt;/td&gt;&lt;td&gt;&lt;button class=&quot;rm-ghost&quot; type=&quot;button&quot; data-add-candidate&gt;新增合格候选人&lt;/button&gt;&lt;/td&gt;&lt;/tr&gt;
+            &lt;tr&gt;&lt;td&gt;2026-08-27&lt;/td&gt;&lt;td&gt;R10146 技术支持工程师&lt;/td&gt;&lt;td&gt;猎聘&lt;/td&gt;&lt;td&gt;陈雪&lt;/td&gt;&lt;td&gt;5&lt;/td&gt;&lt;td&gt;1&lt;/td&gt;&lt;td&gt;20.0%&lt;/td&gt;&lt;td&gt;&lt;button class=&quot;rm-ghost&quot; type=&quot;button&quot; data-add-candidate&gt;新增合格候选人&lt;/button&gt;&lt;/td&gt;&lt;/tr&gt;
+          &lt;/tbody&gt;&lt;/table&gt;&lt;/div&gt;
+        &lt;/section&gt;
+
+        &lt;section class=&quot;rm-page&quot; data-page-panel=&quot;dashboard&quot;&gt;
+          &lt;div class=&quot;rm-page-head&quot;&gt;&lt;div&gt;&lt;h2&gt;招聘数据看板&lt;/h2&gt;&lt;p class=&quot;rm-sub&quot;&gt;个人工作量、招聘漏斗和阶段流失分析&lt;/p&gt;&lt;/div&gt;&lt;div class=&quot;rm-segment&quot; aria-label=&quot;统计口径&quot;&gt;&lt;button type=&quot;button&quot; aria-pressed=&quot;true&quot; data-mode=&quot;activity&quot;&gt;按发生时间&lt;/button&gt;&lt;button type=&quot;button&quot; aria-pressed=&quot;false&quot; data-mode=&quot;cohort&quot;&gt;按推荐批次&lt;/button&gt;&lt;/div&gt;&lt;/div&gt;
+          &lt;div class=&quot;rm-toolbar&quot;&gt;&lt;select class=&quot;rm-field&quot;&gt;&lt;option&gt;本周&lt;/option&gt;&lt;option&gt;本月&lt;/option&gt;&lt;option&gt;自定义时间&lt;/option&gt;&lt;/select&gt;&lt;select class=&quot;rm-field&quot;&gt;&lt;option&gt;陈雪&lt;/option&gt;&lt;option&gt;高琴&lt;/option&gt;&lt;option&gt;多选HR对比&lt;/option&gt;&lt;/select&gt;&lt;select class=&quot;rm-field&quot;&gt;&lt;option&gt;全部招聘需求&lt;/option&gt;&lt;option&gt;R10316 测试工程师&lt;/option&gt;&lt;/select&gt;&lt;/div&gt;
+          &lt;div class=&quot;rm-metrics&quot;&gt;&lt;div class=&quot;rm-metric&quot;&gt;&lt;div class=&quot;rm-metric-label&quot;&gt;推荐简历&lt;/div&gt;&lt;div class=&quot;rm-metric-value&quot;&gt;86&lt;/div&gt;&lt;div class=&quot;rm-metric-note&quot;&gt;本周个人工作量&lt;/div&gt;&lt;/div&gt;&lt;div class=&quot;rm-metric&quot;&gt;&lt;div class=&quot;rm-metric-label&quot;&gt;简历合格&lt;/div&gt;&lt;div class=&quot;rm-metric-value&quot;&gt;31&lt;/div&gt;&lt;div class=&quot;rm-metric-note&quot;&gt;通过率 36.0%&lt;/div&gt;&lt;/div&gt;&lt;div class=&quot;rm-metric&quot;&gt;&lt;div class=&quot;rm-metric-label&quot;&gt;Offer接受&lt;/div&gt;&lt;div class=&quot;rm-metric-value&quot;&gt;4&lt;/div&gt;&lt;div class=&quot;rm-metric-note&quot;&gt;接受率 80.0%&lt;/div&gt;&lt;/div&gt;&lt;div class=&quot;rm-metric&quot;&gt;&lt;div class=&quot;rm-metric-label&quot;&gt;实际入职&lt;/div&gt;&lt;div class=&quot;rm-metric-value&quot;&gt;3&lt;/div&gt;&lt;div class=&quot;rm-metric-note&quot; id=&quot;rm-mode-note&quot;&gt;按本周实际发生动作&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;
+          &lt;div class=&quot;rm-grid-2&quot;&gt;
+            &lt;div class=&quot;rm-panel&quot;&gt;&lt;div class=&quot;rm-panel-head&quot;&gt;&lt;h3&gt;招聘漏斗&lt;/h3&gt;&lt;span class=&quot;rm-sub&quot;&gt;陈雪 · 本周&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;rm-funnel&quot; aria-label=&quot;推荐简历86，简历合格31，初试20，复试9，Offer发放5，Offer接受4，入职3&quot;&gt;&lt;div class=&quot;rm-funnel-step&quot;&gt;&lt;div class=&quot;rm-funnel-mark&quot;&gt;86&lt;/div&gt;&lt;div class=&quot;rm-funnel-label&quot;&gt;推荐简历&lt;/div&gt;&lt;/div&gt;&lt;span class=&quot;rm-arrow&quot;&gt;›&lt;/span&gt;&lt;div class=&quot;rm-funnel-step&quot;&gt;&lt;div class=&quot;rm-funnel-mark&quot;&gt;31&lt;/div&gt;&lt;div class=&quot;rm-funnel-label&quot;&gt;简历合格&lt;/div&gt;&lt;/div&gt;&lt;span class=&quot;rm-arrow&quot;&gt;›&lt;/span&gt;&lt;div class=&quot;rm-funnel-step&quot;&gt;&lt;div class=&quot;rm-funnel-mark&quot;&gt;20&lt;/div&gt;&lt;div class=&quot;rm-funnel-label&quot;&gt;初试完成&lt;/div&gt;&lt;/div&gt;&lt;span class=&quot;rm-arrow&quot;&gt;›&lt;/span&gt;&lt;div class=&quot;rm-funnel-step&quot;&gt;&lt;div class=&quot;rm-funnel-mark&quot;&gt;9&lt;/div&gt;&lt;div class=&quot;rm-funnel-label&quot;&gt;复试完成&lt;/div&gt;&lt;/div&gt;&lt;span class=&quot;rm-arrow&quot;&gt;›&lt;/span&gt;&lt;div class=&quot;rm-funnel-step&quot;&gt;&lt;div class=&quot;rm-funnel-mark&quot;&gt;5&lt;/div&gt;&lt;div class=&quot;rm-funnel-label&quot;&gt;Offer发放&lt;/div&gt;&lt;/div&gt;&lt;span class=&quot;rm-arrow&quot;&gt;›&lt;/span&gt;&lt;div class=&quot;rm-funnel-step&quot;&gt;&lt;div class=&quot;rm-funnel-mark&quot;&gt;4&lt;/div&gt;&lt;div class=&quot;rm-funnel-label&quot;&gt;Offer接受&lt;/div&gt;&lt;/div&gt;&lt;span class=&quot;rm-arrow&quot;&gt;›&lt;/span&gt;&lt;div class=&quot;rm-funnel-step&quot;&gt;&lt;div class=&quot;rm-funnel-mark&quot;&gt;3&lt;/div&gt;&lt;div class=&quot;rm-funnel-label&quot;&gt;实际入职&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;
+            &lt;div class=&quot;rm-panel&quot;&gt;&lt;div class=&quot;rm-panel-head&quot;&gt;&lt;h3&gt;主要Out原因&lt;/h3&gt;&lt;span class=&quot;rm-sub&quot;&gt;共 18 人&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;rm-bars&quot;&gt;&lt;div class=&quot;rm-bar-row&quot;&gt;&lt;span&gt;经验不符&lt;/span&gt;&lt;div class=&quot;rm-bar&quot;&gt;&lt;span style=&quot;width:100%&quot;&gt;&lt;/span&gt;&lt;/div&gt;&lt;b&gt;6&lt;/b&gt;&lt;/div&gt;&lt;div class=&quot;rm-bar-row&quot;&gt;&lt;span&gt;薪资原因&lt;/span&gt;&lt;div class=&quot;rm-bar&quot;&gt;&lt;span style=&quot;width:67%&quot;&gt;&lt;/span&gt;&lt;/div&gt;&lt;b&gt;4&lt;/b&gt;&lt;/div&gt;&lt;div class=&quot;rm-bar-row&quot;&gt;&lt;span&gt;拒绝邀约&lt;/span&gt;&lt;div class=&quot;rm-bar&quot;&gt;&lt;span style=&quot;width:50%&quot;&gt;&lt;/span&gt;&lt;/div&gt;&lt;b&gt;3&lt;/b&gt;&lt;/div&gt;&lt;div class=&quot;rm-bar-row&quot;&gt;&lt;span&gt;未到场&lt;/span&gt;&lt;div class=&quot;rm-bar&quot;&gt;&lt;span style=&quot;width:33%&quot;&gt;&lt;/span&gt;&lt;/div&gt;&lt;b&gt;2&lt;/b&gt;&lt;/div&gt;&lt;div class=&quot;rm-bar-row&quot;&gt;&lt;span&gt;其他&lt;/span&gt;&lt;div class=&quot;rm-bar&quot;&gt;&lt;span style=&quot;width:50%&quot;&gt;&lt;/span&gt;&lt;/div&gt;&lt;b&gt;3&lt;/b&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;
+          &lt;/div&gt;
+        &lt;/section&gt;
+      &lt;/div&gt;
+    &lt;/main&gt;
+
+    &lt;div class=&quot;rm-modal-layer&quot; id=&quot;rm-update-modal&quot; role=&quot;dialog&quot; aria-modal=&quot;true&quot; aria-labelledby=&quot;rm-update-title&quot;&gt;
+      &lt;div class=&quot;rm-modal&quot;&gt;&lt;h3 id=&quot;rm-update-title&quot;&gt;更新候选人状态&lt;/h3&gt;&lt;p class=&quot;rm-sub&quot;&gt;系统只展示当前阶段允许执行的操作&lt;/p&gt;&lt;div class=&quot;rm-modal-fields&quot;&gt;&lt;label&gt;本次结果&lt;select class=&quot;rm-field&quot; id=&quot;rm-update-result&quot;&gt;&lt;option&gt;面试通过&lt;/option&gt;&lt;option&gt;面试待定&lt;/option&gt;&lt;option&gt;面试不通过&lt;/option&gt;&lt;/select&gt;&lt;/label&gt;&lt;label&gt;评价或备注&lt;textarea class=&quot;rm-field&quot; rows=&quot;3&quot; placeholder=&quot;填写面试结论或后续安排&quot;&gt;&lt;/textarea&gt;&lt;/label&gt;&lt;/div&gt;&lt;div class=&quot;rm-modal-actions&quot;&gt;&lt;button class=&quot;rm-secondary&quot; type=&quot;button&quot; data-close-modal&gt;取消&lt;/button&gt;&lt;button class=&quot;rm-primary&quot; type=&quot;button&quot; id=&quot;rm-confirm-update&quot;&gt;确认更新&lt;/button&gt;&lt;/div&gt;&lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class=&quot;rm-modal-layer&quot; id=&quot;rm-out-modal&quot; role=&quot;dialog&quot; aria-modal=&quot;true&quot; aria-labelledby=&quot;rm-out-title&quot;&gt;
+      &lt;div class=&quot;rm-modal&quot;&gt;&lt;h3 id=&quot;rm-out-title&quot;&gt;终止候选人流程&lt;/h3&gt;&lt;p class=&quot;rm-sub&quot;&gt;当前阶段将由系统自动记录&lt;/p&gt;&lt;div class=&quot;rm-modal-fields&quot;&gt;&lt;label&gt;主动方&lt;select class=&quot;rm-field&quot;&gt;&lt;option&gt;候选人&lt;/option&gt;&lt;option&gt;公司&lt;/option&gt;&lt;option&gt;客观原因&lt;/option&gt;&lt;/select&gt;&lt;/label&gt;&lt;label&gt;终止原因&lt;select class=&quot;rm-field&quot;&gt;&lt;option&gt;拒绝邀约&lt;/option&gt;&lt;option&gt;预约后未到场&lt;/option&gt;&lt;option&gt;面试不通过&lt;/option&gt;&lt;option&gt;薪资原因&lt;/option&gt;&lt;option&gt;其他&lt;/option&gt;&lt;/select&gt;&lt;/label&gt;&lt;label&gt;详细说明&lt;textarea class=&quot;rm-field&quot; rows=&quot;3&quot; placeholder=&quot;请说明具体情况&quot;&gt;&lt;/textarea&gt;&lt;/label&gt;&lt;/div&gt;&lt;div class=&quot;rm-modal-actions&quot;&gt;&lt;button class=&quot;rm-secondary&quot; type=&quot;button&quot; data-close-modal&gt;取消&lt;/button&gt;&lt;button class=&quot;rm-primary&quot; type=&quot;button&quot; id=&quot;rm-confirm-out&quot;&gt;确认终止&lt;/button&gt;&lt;/div&gt;&lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class=&quot;rm-modal-layer&quot; id=&quot;rm-add-modal&quot; role=&quot;dialog&quot; aria-modal=&quot;true&quot; aria-labelledby=&quot;rm-add-title&quot;&gt;
+      &lt;div class=&quot;rm-modal&quot;&gt;&lt;h3 id=&quot;rm-add-title&quot;&gt;新增合格候选人&lt;/h3&gt;&lt;p class=&quot;rm-sub&quot;&gt;建档后自动进入“待约初试”，招聘负责人为当前HR&lt;/p&gt;&lt;div class=&quot;rm-modal-fields&quot;&gt;&lt;label&gt;候选人姓名&lt;input class=&quot;rm-field&quot; id=&quot;rm-new-name&quot; placeholder=&quot;请输入姓名&quot;&gt;&lt;/label&gt;&lt;label&gt;手机号&lt;input class=&quot;rm-field&quot; inputmode=&quot;tel&quot; placeholder=&quot;用于候选人去重&quot;&gt;&lt;/label&gt;&lt;label&gt;招聘需求&lt;select class=&quot;rm-field&quot;&gt;&lt;option&gt;R10316 测试工程师&lt;/option&gt;&lt;option&gt;R10146 技术支持工程师&lt;/option&gt;&lt;option&gt;R10312 销售工程师&lt;/option&gt;&lt;/select&gt;&lt;/label&gt;&lt;label&gt;推荐日期&lt;input class=&quot;rm-field&quot; type=&quot;date&quot; value=&quot;2026-08-27&quot;&gt;&lt;/label&gt;&lt;label&gt;招聘渠道&lt;select class=&quot;rm-field&quot;&gt;&lt;option&gt;BOSS&lt;/option&gt;&lt;option&gt;猎聘&lt;/option&gt;&lt;option&gt;内推&lt;/option&gt;&lt;option&gt;RPO&lt;/option&gt;&lt;/select&gt;&lt;/label&gt;&lt;label&gt;招聘负责人&lt;input class=&quot;rm-field&quot; value=&quot;陈雪&quot; readonly&gt;&lt;/label&gt;&lt;/div&gt;&lt;div class=&quot;rm-modal-actions&quot;&gt;&lt;button class=&quot;rm-secondary&quot; type=&quot;button&quot; data-close-modal&gt;取消&lt;/button&gt;&lt;button class=&quot;rm-primary&quot; type=&quot;button&quot; id=&quot;rm-confirm-add&quot;&gt;创建候选人&lt;/button&gt;&lt;/div&gt;&lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/section&gt;
+
+  &lt;script&gt;
+    (() =&gt; {
+      const root = document.getElementById(&#x27;rm-prototype&#x27;);
+      const titles = { workbench:&#x27;工作台&#x27;, demands:&#x27;招聘需求&#x27;, candidates:&#x27;候选人&#x27;, recommend:&#x27;简历推荐&#x27;, dashboard:&#x27;数据看板&#x27; };
+      const showPage = (name) =&gt; {
+        root.querySelectorAll(&#x27;[data-page-panel]&#x27;).forEach(p =&gt; p.classList.toggle(&#x27;is-active&#x27;, p.dataset.pagePanel === name));
+        root.querySelectorAll(&#x27;[data-page]&#x27;).forEach(b =&gt; b.setAttribute(&#x27;aria-selected&#x27;, String(b.dataset.page === name)));
+        root.querySelector(&#x27;#rm-page-title&#x27;).textContent = titles[name];
+      };
+      root.addEventListener(&#x27;click&#x27;, e =&gt; {
+        const pageButton = e.target.closest(&#x27;[data-page]&#x27;);
+        if (pageButton) showPage(pageButton.dataset.page);
+        const jumpButton = e.target.closest(&#x27;[data-jump]&#x27;);
+        if (jumpButton) showPage(jumpButton.dataset.jump);
+      });
+
+      const detail = root.querySelector(&#x27;#rm-detail&#x27;);
+      const detailName = root.querySelector(&#x27;#rm-detail-name&#x27;);
+      const candidateRoles = { &#x27;王仕琦&#x27;:&#x27;测试工程师&#x27;, &#x27;张灿&#x27;:&#x27;测试工程师&#x27;, &#x27;严哲&#x27;:&#x27;技术支持工程师&#x27;, &#x27;郑祥威&#x27;:&#x27;调试工程师&#x27;, &#x27;李炜晨&#x27;:&#x27;技术支持工程师&#x27;, &#x27;骆义飞&#x27;:&#x27;市场运营专员&#x27;, &#x27;程文秋&#x27;:&#x27;制造工程师&#x27; };
+      root.querySelectorAll(&#x27;[data-candidate]&#x27;).forEach(b =&gt; b.addEventListener(&#x27;click&#x27;, () =&gt; {
+        showPage(&#x27;candidates&#x27;);
+        const name = b.dataset.candidate;
+        detailName.textContent = `${name} · ${candidateRoles[name] || &#x27;候选人&#x27;}`;
+        detail.classList.add(&#x27;is-open&#x27;);
+        detail.scrollIntoView({behavior:&#x27;smooth&#x27;, block:&#x27;nearest&#x27;});
+      }));
+
+      const updateModal = root.querySelector(&#x27;#rm-update-modal&#x27;);
+      const outModal = root.querySelector(&#x27;#rm-out-modal&#x27;);
+      const addModal = root.querySelector(&#x27;#rm-add-modal&#x27;);
+      root.querySelectorAll(&#x27;[data-open-update]&#x27;).forEach(b =&gt; b.addEventListener(&#x27;click&#x27;, () =&gt; updateModal.classList.add(&#x27;is-open&#x27;)));
+      root.querySelectorAll(&#x27;[data-open-out]&#x27;).forEach(b =&gt; b.addEventListener(&#x27;click&#x27;, () =&gt; outModal.classList.add(&#x27;is-open&#x27;)));
+      root.querySelectorAll(&#x27;[data-close-modal]&#x27;).forEach(b =&gt; b.addEventListener(&#x27;click&#x27;, () =&gt; b.closest(&#x27;.rm-modal-layer&#x27;).classList.remove(&#x27;is-open&#x27;)));
+      root.querySelector(&#x27;#rm-confirm-update&#x27;).addEventListener(&#x27;click&#x27;, () =&gt; {
+        root.querySelector(&#x27;#rm-detail-status&#x27;).textContent = root.querySelector(&#x27;#rm-update-result&#x27;).value;
+        updateModal.classList.remove(&#x27;is-open&#x27;);
+      });
+      root.querySelector(&#x27;#rm-confirm-out&#x27;).addEventListener(&#x27;click&#x27;, () =&gt; {
+        root.querySelector(&#x27;#rm-detail-status&#x27;).textContent = &#x27;已终止&#x27;;
+        outModal.classList.remove(&#x27;is-open&#x27;);
+      });
+      root.querySelectorAll(&#x27;.rm-modal-layer&#x27;).forEach(layer =&gt; layer.addEventListener(&#x27;click&#x27;, e =&gt; { if (e.target === layer) layer.classList.remove(&#x27;is-open&#x27;); }));
+
+      root.querySelector(&#x27;#rm-save-recommend&#x27;).addEventListener(&#x27;click&#x27;, () =&gt; {
+        const date = root.querySelector(&#x27;#rm-rec-date&#x27;).value;
+        const demand = root.querySelector(&#x27;#rm-rec-demand&#x27;).value;
+        const channel = root.querySelector(&#x27;#rm-rec-channel&#x27;).value;
+        const count = Number(root.querySelector(&#x27;#rm-rec-count&#x27;).value);
+        const msg = root.querySelector(&#x27;#rm-entry-message&#x27;);
+        if (!date || !count || count &lt; 1) { msg.style.color = &#x27;var(--rm-bad)&#x27;; msg.textContent = &#x27;请填写有效日期和推荐数量。&#x27;; return; }
+        const row = document.createElement(&#x27;tr&#x27;);
+        row.innerHTML = `&lt;td&gt;${date}&lt;/td&gt;&lt;td&gt;${demand}&lt;/td&gt;&lt;td&gt;${channel}&lt;/td&gt;&lt;td&gt;陈雪&lt;/td&gt;&lt;td&gt;${count}&lt;/td&gt;&lt;td&gt;0&lt;/td&gt;&lt;td&gt;0.0%&lt;/td&gt;&lt;td&gt;&lt;button class=&quot;rm-ghost&quot; type=&quot;button&quot; data-add-candidate&gt;新增合格候选人&lt;/button&gt;&lt;/td&gt;`;
+        root.querySelector(&#x27;#rm-recommend-body&#x27;).prepend(row);
+        msg.style.color = &#x27;var(--rm-good)&#x27;;
+        msg.textContent = &#x27;推荐记录已保存，后续创建合格候选人后将自动更新通过率。&#x27;;
+      });
+      root.addEventListener(&#x27;click&#x27;, e =&gt; { if (e.target.closest(&#x27;[data-add-candidate]&#x27;)) addModal.classList.add(&#x27;is-open&#x27;); });
+      root.querySelector(&#x27;#rm-confirm-add&#x27;).addEventListener(&#x27;click&#x27;, () =&gt; {
+        const name = root.querySelector(&#x27;#rm-new-name&#x27;).value.trim();
+        if (!name) { root.querySelector(&#x27;#rm-new-name&#x27;).focus(); return; }
+        addModal.classList.remove(&#x27;is-open&#x27;);
+        showPage(&#x27;candidates&#x27;);
+        detail.classList.add(&#x27;is-open&#x27;);
+        detailName.textContent = `${name} · 测试工程师`;
+        root.querySelector(&#x27;#rm-detail-status&#x27;).textContent = &#x27;待约初试&#x27;;
+      });
+
+      root.querySelectorAll(&#x27;[data-mode]&#x27;).forEach(b =&gt; b.addEventListener(&#x27;click&#x27;, () =&gt; {
+        root.querySelectorAll(&#x27;[data-mode]&#x27;).forEach(x =&gt; x.setAttribute(&#x27;aria-pressed&#x27;, String(x === b)));
+        root.querySelector(&#x27;#rm-mode-note&#x27;).textContent = b.dataset.mode === &#x27;cohort&#x27; ? &#x27;追踪本周推荐候选人的最终进展&#x27; : &#x27;按本周实际发生动作&#x27;;
+      }));
+    })();
+  &lt;/script&gt;
+&lt;/div&gt;
+
+&lt;script src=&quot;https://unpkg.com/@floating-ui/core@1.7.3/dist/floating-ui.core.umd.min.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;https://unpkg.com/@floating-ui/dom@1.7.4/dist/floating-ui.dom.umd.min.js&quot;&gt;&lt;/script&gt;
+&lt;script&gt;
+(() =&gt; {
+  if (window.FloatingUIDOM == null) {
+    return;
+  }
+  const { autoUpdate, computePosition, flip, offset, shift, size } =
+    window.FloatingUIDOM;
+  const tooltipPlacements = new Set([&quot;top&quot;, &quot;right&quot;, &quot;bottom&quot;, &quot;left&quot;]);
+  const tooltipId = `codex-visualization-tooltip-${
+    window.crypto?.randomUUID?.() ?? Date.now().toString(36)
+  }`;
+  const tooltipGap = 5;
+  const hoverDelay = 700;
+  const skipDelay = 300;
+  let activeTrigger = null;
+  let pendingTrigger = null;
+  let tooltip = null;
+  let openTimeout = null;
+  let autoUpdateCleanup = null;
+  let positionRequest = 0;
+  let skipDelayUntil = 0;
+  let lastPointerWasTouch = false;
+  let pinnedByTouch = false;
+
+  const getTrigger = (target) =&gt;
+    target?.nodeType === Node.ELEMENT_NODE
+      ? target.closest(&quot;[data-tooltip]&quot;)
+      : null;
+  const containsTarget = (trigger, target) =&gt;
+    target?.nodeType != null &amp;&amp; trigger.contains(target);
+  const getContent = (trigger) =&gt;
+    trigger.getAttribute(&quot;data-tooltip&quot;)?.trim() ?? &quot;&quot;;
+  const getPlacement = (trigger) =&gt; {
+    const placement = trigger.getAttribute(&quot;data-tooltip-placement&quot;);
+    return tooltipPlacements.has(placement) ? placement : &quot;top&quot;;
+  };
+  const getTooltip = () =&gt; {
+    if (tooltip == null) {
+      tooltip = document.createElement(&quot;div&quot;);
+      tooltip.id = tooltipId;
+      tooltip.className = &quot;tooltip&quot;;
+      tooltip.setAttribute(&quot;role&quot;, &quot;tooltip&quot;);
+    }
+    return tooltip;
+  };
+  const setDescribedBy = (trigger, described) =&gt; {
+    const ids = new Set(
+      (trigger.getAttribute(&quot;aria-describedby&quot;) ?? &quot;&quot;)
+        .split(/\s+/)
+        .filter(Boolean),
+    );
+    if (described) {
+      ids.add(tooltipId);
+    } else {
+      ids.delete(tooltipId);
+    }
+    if (ids.size === 0) {
+      trigger.removeAttribute(&quot;aria-describedby&quot;);
+    } else {
+      trigger.setAttribute(&quot;aria-describedby&quot;, [...ids].join(&quot; &quot;));
+    }
+  };
+  const clearOpenTimeout = () =&gt; {
+    if (openTimeout != null) {
+      window.clearTimeout(openTimeout);
+      openTimeout = null;
+    }
+    pendingTrigger = null;
+  };
+  const closeTooltip = (activateSkipDelay = true) =&gt; {
+    clearOpenTimeout();
+    pinnedByTouch = false;
+    positionRequest += 1;
+    autoUpdateCleanup?.();
+    autoUpdateCleanup = null;
+    if (activeTrigger == null) {
+      return;
+    }
+    setDescribedBy(activeTrigger, false);
+    activeTrigger = null;
+    tooltip?.remove();
+    if (activateSkipDelay) {
+      skipDelayUntil = Date.now() + skipDelay;
+    }
+  };
+  const updatePosition = (trigger, floating) =&gt; {
+    const request = ++positionRequest;
+    void computePosition(trigger, floating, {
+      middleware: [
+        offset(tooltipGap),
+        flip({ padding: tooltipGap }),
+        shift({ padding: tooltipGap }),
+        size({
+          padding: tooltipGap,
+          apply({ availableHeight, availableWidth, elements }) {
+            elements.floating.style.setProperty(
+              &quot;--tooltip-available-width&quot;,
+              `${Math.max(0, availableWidth)}px`,
+            );
+            elements.floating.style.setProperty(
+              &quot;--tooltip-available-height&quot;,
+              `${Math.max(0, availableHeight)}px`,
+            );
+          },
+        }),
+      ],
+      placement: getPlacement(trigger),
+      strategy: &quot;fixed&quot;,
+    })
+      .then(({ x, y }) =&gt; {
+        if (activeTrigger !== trigger || request !== positionRequest) {
+          return;
+        }
+        const scale = window.devicePixelRatio || 1;
+        floating.style.transform = `translate(${Math.round(x * scale) / scale}px, ${Math.round(y * scale) / scale}px)`;
+        floating.style.visibility = &quot;visible&quot;;
+      })
+      .catch(() =&gt; {
+        if (activeTrigger === trigger &amp;&amp; request === positionRequest) {
+          closeTooltip(false);
+        }
+      });
+  };
+  const openTooltip = (trigger) =&gt; {
+    const content = getContent(trigger);
+    if (!trigger.isConnected || content.length === 0) {
+      return;
+    }
+    clearOpenTimeout();
+    if (activeTrigger === trigger) {
+      return;
+    }
+    closeTooltip();
+    const floating = getTooltip();
+    floating.textContent = content;
+    floating.style.visibility = &quot;hidden&quot;;
+    floating.style.transform = &quot;translate(0, 0)&quot;;
+    document.body.appendChild(floating);
+    activeTrigger = trigger;
+    setDescribedBy(trigger, true);
+    autoUpdateCleanup = autoUpdate(trigger, floating, () =&gt; {
+      updatePosition(trigger, floating);
+    });
+  };
+  const requestOpen = (trigger, immediate = false) =&gt; {
+    if (
+      getContent(trigger).length === 0 ||
+      activeTrigger === trigger ||
+      pendingTrigger === trigger
+    ) {
+      return;
+    }
+    clearOpenTimeout();
+    pendingTrigger = trigger;
+    const delay =
+      immediate || activeTrigger != null || Date.now() &lt; skipDelayUntil
+        ? 0
+        : hoverDelay;
+    if (delay === 0) {
+      openTooltip(trigger);
+      return;
+    }
+    openTimeout = window.setTimeout(() =&gt; {
+      openTimeout = null;
+      pendingTrigger = null;
+      openTooltip(trigger);
+    }, delay);
+  };
+  const handlePointerOpen = (event) =&gt; {
+    if (event.pointerType === &quot;touch&quot;) {
+      return;
+    }
+    const trigger = getTrigger(event.target);
+    if (trigger == null || containsTarget(trigger, event.relatedTarget)) {
+      return;
+    }
+    requestOpen(trigger);
+  };
+  const handlePointer = (event) =&gt; {
+    lastPointerWasTouch =
+      event.type === &quot;pointerdown&quot; &amp;&amp; event.pointerType === &quot;touch&quot;;
+  };
+  const handleTouchClick = (event) =&gt; {
+    const isTouch = event.pointerType === &quot;touch&quot; || lastPointerWasTouch;
+    lastPointerWasTouch = false;
+    if (!isTouch || event.detail === 0) {
+      return;
+    }
+    const trigger = getTrigger(event.target);
+    if (
+      trigger == null ||
+      !trigger.isConnected ||
+      getContent(trigger).length === 0 ||
+      (pinnedByTouch &amp;&amp; activeTrigger === trigger)
+    ) {
+      if (pinnedByTouch) {
+        closeTooltip();
+      }
+      return;
+    }
+    openTooltip(trigger);
+    pinnedByTouch = activeTrigger === trigger;
+    window.setTimeout(() =&gt; {
+      if (activeTrigger === trigger &amp;&amp; !trigger.isConnected) {
+        closeTooltip(false);
+      }
+    }, 0);
+  };
+  const handleLeave = (event) =&gt; {
+    if (pinnedByTouch) {
+      return;
+    }
+    const trigger = getTrigger(event.target);
+    if (trigger == null || containsTarget(trigger, event.relatedTarget)) {
+      return;
+    }
+    if (activeTrigger === trigger || pendingTrigger === trigger) {
+      closeTooltip();
+    }
+  };
+  const handleFocusIn = (event) =&gt; {
+    const trigger = getTrigger(event.target);
+    if (trigger?.matches(&quot;:focus-visible&quot;)) {
+      requestOpen(trigger, true);
+    }
+  };
+  const handleKeyDown = (event) =&gt; {
+    if (event.key === &quot;Escape&quot;) {
+      closeTooltip();
+    }
+  };
+  const handleContextMenu = (event) =&gt; {
+    lastPointerWasTouch = false;
+    const trigger = getTrigger(event.target);
+    if (activeTrigger === trigger || pendingTrigger === trigger) {
+      closeTooltip();
+    }
+  };
+  const destroy = () =&gt; {
+    closeTooltip(false);
+    lastPointerWasTouch = false;
+    document.removeEventListener(&quot;pointerover&quot;, handlePointerOpen);
+    document.removeEventListener(&quot;pointerdown&quot;, handlePointer);
+    document.removeEventListener(&quot;pointercancel&quot;, handlePointer);
+    document.removeEventListener(&quot;click&quot;, handleTouchClick);
+    document.removeEventListener(&quot;pointerout&quot;, handleLeave);
+    document.removeEventListener(&quot;focusin&quot;, handleFocusIn);
+    document.removeEventListener(&quot;focusout&quot;, handleLeave);
+    document.removeEventListener(&quot;keydown&quot;, handleKeyDown);
+    document.removeEventListener(&quot;contextmenu&quot;, handleContextMenu);
+    tooltip = null;
+  };
+
+  document.addEventListener(&quot;pointerover&quot;, handlePointerOpen);
+  document.addEventListener(&quot;pointerdown&quot;, handlePointer);
+  document.addEventListener(&quot;pointercancel&quot;, handlePointer);
+  document.addEventListener(&quot;click&quot;, handleTouchClick);
+  document.addEventListener(&quot;pointerout&quot;, handleLeave);
+  document.addEventListener(&quot;focusin&quot;, handleFocusIn);
+  document.addEventListener(&quot;focusout&quot;, handleLeave);
+  document.addEventListener(&quot;keydown&quot;, handleKeyDown);
+  document.addEventListener(&quot;contextmenu&quot;, handleContextMenu);
+  window.addEventListener(&quot;pagehide&quot;, destroy, { once: true });
+})();
+&lt;/script&gt;
+&lt;script id=&quot;codex-visualization-lucide&quot; async src=&quot;https://unpkg.com/lucide@1.17.0/dist/umd/lucide.js&quot;&gt;&lt;/script&gt;
+&lt;script&gt;
+(() =&gt; {
+  const initialize = () =&gt; {
+    globalThis.lucide?.createIcons({ attrs: { width: 16, height: 16 } });
+  };
+  if (globalThis.lucide != null) {
+    initialize();
+    return;
+  }
+  document
+    .getElementById(&quot;codex-visualization-lucide&quot;)
+    ?.addEventListener(&quot;load&quot;, initialize, { once: true });
+})();
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+"></iframe>
+</body>
+</html>
