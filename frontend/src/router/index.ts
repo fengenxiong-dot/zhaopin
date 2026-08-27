@@ -28,8 +28,12 @@ const router = createRouter({
       component: () => import('@/views/PlaceholderView.vue'),
       meta: { title: '数据看板', description: '查看工作量、招聘漏斗和Out原因分析' },
     },
+    {
+      path: '/admin',
+      component: () => import('@/views/AdminView.vue'),
+      meta: { title: '系统管理' },
+    },
   ],
 })
 
 export default router
-

@@ -5,6 +5,7 @@ import {
   DocumentAdd,
   House,
   User,
+  Setting,
 } from '@element-plus/icons-vue'
 import { computed, onMounted, reactive, ref } from 'vue'
 import { useRoute } from 'vue-router'
@@ -47,6 +48,9 @@ const menuItems = [
   { path: '/resume-workloads', label: '简历推荐', icon: DocumentAdd },
   { path: '/dashboard', label: '数据看板', icon: DataAnalysis },
 ]
+const visibleMenuItems = computed(() => user.value?.roles.includes('SYSTEM_ADMIN')
+  ? [...menuItems, { path: '/admin', label: '系统管理', icon: Setting }]
+  : menuItems)
 </script>
 
 <template>
@@ -66,7 +70,7 @@ const menuItems = [
     <el-aside width="208px" class="app-sidebar">
       <div class="brand">招聘管理</div>
       <el-menu :default-active="route.path" router>
-        <el-menu-item v-for="item in menuItems" :key="item.path" :index="item.path">
+        <el-menu-item v-for="item in visibleMenuItems" :key="item.path" :index="item.path">
           <el-icon><component :is="item.icon" /></el-icon>
           <span>{{ item.label }}</span>
         </el-menu-item>
